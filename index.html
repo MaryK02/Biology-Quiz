@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biology Quiz</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f4f7f6;
+      text-align: center;
+    }
+
+    .quiz-box {
+      max-width: 500px;
+      margin: 40px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .question {
+      font-size: 20px;
+      margin: 25px 0;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      background: #eee;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #ddd;
+    }
+
+    #next {
+      background: #333;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="quiz-box">
+    <h1>🧬 Biology Quiz</h1>
+
+    <p id="question">Loading question...</p>
+
+    <div id="answers"></div>
+
+    <button id="next" onclick="nextQuestion()">Next Question</button>
+
+    <p id="score"></p>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "Which organ pumps blood around the body?",
+        answers: ["Liver", "Heart", "Kidney", "Lung"],
+        correct: "Heart"
+      },
+      {
+        question: "What is the basic unit of life?",
+        answers: ["Tissue", "Organ", "Cell", "System"],
+        correct: "Cell"
+      },
+      {
+        question: "Which organ is mainly responsible for gas exchange?",
+        answers: ["Heart", "Lung", "Stomach", "Kidney"],
+        correct: "Lung"
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    function loadQuestion() {
+      const q = questions[currentQuestion];
+
+      document.getElementById("question").textContent = q.question;
+
+      const answersDiv = document.getElementById("answers");
+      answersDiv.innerHTML = "";
+
+      q.answers.forEach(answer => {
+        const button = document.createElement("button");
+        button.textContent = answer;
+
+        button.onclick = function() {
+          if (answer === q.correct) {
+            score++;
+            alert("Correct! 🎉");
+          } else {
+            alert("Not quite. The correct answer is " + q.correct);
+          }
+        };
+
+        answersDiv.appendChild(button);
+      });
+
+      document.getElementById("score").textContent =
+        "Score: " + score;
+    }
+
+    function nextQuestion() {
+      currentQuestion++;
+
+      if (currentQuestion >= questions.length) {
+        document.getElementById("question").textContent =
+          "Quiz completed! 🎉";
+
+        document.getElementById("answers").innerHTML = "";
+
+        document.getElementById("next").style.display = "none";
+
+        document.getElementById("score").textContent =
+          "Your final score: " + score + "/" + questions.length;
+
+        return;
+      }
+
+      loadQuestion();
+    }
+
+    loadQuestion();
+  </script>
+
+</body>
+</html>
