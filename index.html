@@ -3,143 +3,2315 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Biology Quiz</title>
+
+  <title>Biology Hub</title>
+
+  <!-- Telegram Mini App -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
+      background: #f4f7f5;
+      color: #17231b;
+      min-height: 100vh;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .app {
+      max-width: 600px;
+      margin: auto;
+      min-height: 100vh;
+      padding-bottom: 30px;
+    }
+
+    /* HEADER */
+
+    .header {
+      background: #174d2a;
+      color: white;
+      padding: 25px 20px;
+      border-radius: 0 0 25px 25px;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    /* GENERAL */
+
+    .container {
       padding: 20px;
-      background: #f4f7f6;
-      text-align: center;
     }
 
-    .quiz-box {
-      max-width: 500px;
-      margin: 40px auto;
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    .section-title {
+      font-size: 21px;
+      margin-bottom: 15px;
+    }
+
+    .subtitle {
+      color: #68736b;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    /* HOME CARDS */
+
+    .home-card {
       background: white;
-      padding: 25px;
-      border-radius: 15px;
+      border-radius: 18px;
+      padding: 22px;
+      margin-bottom: 15px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+      border: 1px solid #e6ebe7;
     }
 
-    h1 {
+    .home-card h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .home-card p {
+      color: #69736d;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+
+    .main-btn {
+      width: 100%;
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      background: #174d2a;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .secondary-btn {
+      width: 100%;
+      border: none;
+      padding: 13px;
+      border-radius: 12px;
+      background: #e7efe9;
+      color: #174d2a;
+      font-size: 15px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .back-btn {
+      background: transparent;
+      border: none;
+      color: #174d2a;
+      font-weight: bold;
+      font-size: 15px;
+      padding: 0;
+      margin-bottom: 18px;
+    }
+
+    /* SUBJECT CARDS */
+
+    .subject-card {
+      background: white;
+      padding: 18px;
+      border-radius: 16px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .subject-info {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .subject-icon {
+      font-size: 30px;
+    }
+
+    .subject-card h3 {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .subject-card p {
+      font-size: 12px;
+      color: #758078;
+    }
+
+    .arrow {
+      font-size: 22px;
+      color: #174d2a;
+    }
+
+    /* LESSONS */
+
+    .progress-container {
+      background: #dfe7e1;
+      height: 9px;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 10px 0 20px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: #174d2a;
+      width: 0%;
+      transition: width 0.3s;
+    }
+
+    .lesson-card {
+      background: white;
+      padding: 18px;
+      border-radius: 16px;
+      margin-bottom: 12px;
+      border: 1px solid #e6ebe7;
+    }
+
+    .lesson-card.unlocked {
+      cursor: pointer;
+    }
+
+    .lesson-card.locked {
+      opacity: 0.55;
+    }
+
+    .lesson-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .lesson-number {
+      font-size: 12px;
+      color: #6e7971;
+      margin-bottom: 5px;
+    }
+
+    .lesson-card h3 {
+      font-size: 17px;
+      margin-bottom: 7px;
+    }
+
+    .lesson-card p {
+      font-size: 13px;
+      color: #69736d;
+      line-height: 1.4;
+    }
+
+    .lesson-status {
+      font-size: 21px;
+    }
+
+    /* LESSON CONTENT */
+
+    .lesson-content {
+      background: white;
+      border-radius: 18px;
+      padding: 20px;
+      line-height: 1.65;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .lesson-content h2 {
+      color: #174d2a;
+      margin-bottom: 15px;
+    }
+
+    .lesson-content h3 {
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+
+    .lesson-content p {
+      margin-bottom: 12px;
+      font-size: 15px;
+    }
+
+    .lesson-content ul {
+      padding-left: 20px;
+      margin-bottom: 15px;
+    }
+
+    .lesson-content li {
+      margin-bottom: 7px;
+    }
+
+    .tip-box {
+      background: #edf6ef;
+      border-left: 4px solid #174d2a;
+      padding: 14px;
+      border-radius: 8px;
+      margin: 18px 0;
+      font-size: 14px;
+    }
+
+    /* TEST */
+
+    .question-box {
+      background: white;
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .question-number {
+      font-size: 13px;
+      color: #758078;
       margin-bottom: 10px;
     }
 
     .question {
-      font-size: 20px;
-      margin: 25px 0;
+      font-size: 19px;
+      line-height: 1.4;
+      margin-bottom: 20px;
+      font-weight: bold;
     }
 
-    button {
-      display: block;
+    .option {
       width: 100%;
       padding: 14px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 8px;
-      background: #eee;
-      font-size: 16px;
+      margin-bottom: 10px;
+      border-radius: 12px;
+      border: 1px solid #dce3de;
+      background: white;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    .option:hover {
+      background: #f0f5f1;
+    }
+
+    .option.correct {
+      background: #dff3e4;
+      border-color: #4b9c61;
+    }
+
+    .option.wrong {
+      background: #f8dfdf;
+      border-color: #c75c5c;
+    }
+
+    /* RESULT */
+
+    .result-card {
+      background: white;
+      border-radius: 20px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    }
+
+    .result-icon {
+      font-size: 60px;
+      margin-bottom: 15px;
+    }
+
+    .score {
+      font-size: 42px;
+      color: #174d2a;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+
+    .result-message {
+      color: #68736b;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    /* QUIZ */
+
+    .quiz-category {
+      background: white;
+      padding: 18px;
+      border-radius: 16px;
+      margin-bottom: 12px;
       cursor: pointer;
+      border: 1px solid #e6ebe7;
     }
 
-    button:hover {
-      background: #ddd;
+    .quiz-category h3 {
+      margin-bottom: 5px;
     }
 
-    #next {
-      background: #333;
-      color: white;
+    .quiz-category p {
+      font-size: 13px;
+      color: #69736d;
+    }
+
+    /* FOOTER */
+
+    .footer {
+      text-align: center;
+      color: #89938d;
+      font-size: 12px;
+      padding: 20px;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="quiz-box">
-    <h1>🧬 Biology Quiz</h1>
+<div class="app">
 
-    <p id="question">Loading question...</p>
+  <!-- HEADER -->
 
-    <div id="answers"></div>
-
-    <button id="next" onclick="nextQuestion()">Next Question</button>
-
-    <p id="score"></p>
+  <div class="header">
+    <h1>🧬 Biology Hub</h1>
+    <p>Learn Biology. Test Yourself. Keep Growing.</p>
   </div>
 
-  <script>
-    const questions = [
-      {
-        question: "Which organ pumps blood around the body?",
-        answers: ["Liver", "Heart", "Kidney", "Lung"],
-        correct: "Heart"
-      },
-      {
-        question: "What is the basic unit of life?",
-        answers: ["Tissue", "Organ", "Cell", "System"],
-        correct: "Cell"
-      },
-      {
-        question: "Which organ is mainly responsible for gas exchange?",
-        answers: ["Heart", "Lung", "Stomach", "Kidney"],
-        correct: "Lung"
+
+  <!-- ================= HOME ================= -->
+
+  <div id="homeScreen" class="screen active">
+
+    <div class="container">
+
+      <div class="home-card">
+        <h3>📚 Learn Biology</h3>
+
+        <p>
+          Learn Biology step-by-step through structured lessons.
+          Complete a lesson, take the test and unlock the next lesson.
+        </p>
+
+        <button class="main-btn" onclick="showSubjects()">
+          Start Learning
+        </button>
+      </div>
+
+
+      <div class="home-card">
+        <h3>🧠 Quiz Challenge</h3>
+
+        <p>
+          Test your Biology knowledge with questions from different
+          areas of Biology.
+        </p>
+
+        <button class="main-btn" onclick="showQuizCategories()">
+          Take a Quiz
+        </button>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      Biology Hub • Learn • Practice • Grow
+    </div>
+
+  </div>
+
+
+  <!-- ================= SUBJECTS ================= -->
+
+  <div id="subjectsScreen" class="screen">
+
+    <div class="container">
+
+      <button class="back-btn" onclick="goHome()">← Back</button>
+
+      <h2 class="section-title">Choose a Subject</h2>
+
+      <p class="subtitle">
+        Select a Biology subject to begin learning.
+      </p>
+
+
+      <div class="subject-card" onclick="showLessons('physiology')">
+
+        <div class="subject-info">
+
+          <div class="subject-icon">❤️</div>
+
+          <div>
+            <h3>Human Physiology</h3>
+            <p>How the human body functions</p>
+          </div>
+
+        </div>
+
+        <div class="arrow">›</div>
+
+      </div>
+
+
+      <div class="subject-card" onclick="showLessons('cell')">
+
+        <div class="subject-info">
+
+          <div class="subject-icon">🔬</div>
+
+          <div>
+            <h3>Cell Biology</h3>
+            <p>Structure and functions of cells</p>
+          </div>
+
+        </div>
+
+        <div class="arrow">›</div>
+
+      </div>
+
+
+      <div class="subject-card" onclick="showLessons('genetics')">
+
+        <div class="subject-info">
+
+          <div class="subject-icon">🧬</div>
+
+          <div>
+            <h3>Genetics</h3>
+            <p>Genes, DNA and inheritance</p>
+          </div>
+
+        </div>
+
+        <div class="arrow">›</div>
+
+      </div>
+
+
+      <div class="subject-card" onclick="showLessons('anatomy')">
+
+        <div class="subject-info">
+
+          <div class="subject-icon">🦴</div>
+
+          <div>
+            <h3>Anatomy</h3>
+            <p>Structure of the human body</p>
+          </div>
+
+        </div>
+
+        <div class="arrow">›</div>
+
+      </div>
+
+
+      <div class="subject-card" onclick="showLessons('general')">
+
+        <div class="subject-info">
+
+          <div class="subject-icon">🌱</div>
+
+          <div>
+            <h3>General Biology</h3>
+            <p>Fundamental Biology concepts</p>
+          </div>
+
+        </div>
+
+        <div class="arrow">›</div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= LESSONS ================= -->
+
+  <div id="lessonsScreen" class="screen">
+
+    <div class="container">
+
+      <button class="back-btn" onclick="showSubjects()">
+        ← Subjects
+      </button>
+
+      <h2 id="subjectTitle" class="section-title">
+        Human Physiology
+      </h2>
+
+      <p id="subjectDescription" class="subtitle"></p>
+
+
+      <div>
+
+        <strong id="progressText">
+          Progress: 0%
+        </strong>
+
+        <div class="progress-container">
+          <div id="progressBar" class="progress-bar"></div>
+        </div>
+
+      </div>
+
+
+      <div id="lessonsList"></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= LESSON ================= -->
+
+  <div id="lessonScreen" class="screen">
+
+    <div class="container">
+
+      <button class="back-btn" onclick="returnToLessons()">
+        ← Lessons
+      </button>
+
+      <div id="lessonContent" class="lesson-content"></div>
+
+      <br>
+
+      <button class="main-btn" onclick="startLessonTest()">
+        📝 Take Lesson Test
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= LESSON TEST ================= -->
+
+  <div id="lessonTestScreen" class="screen">
+
+    <div class="container">
+
+      <button class="back-btn" onclick="returnToLesson()">
+        ← Review Lesson
+      </button>
+
+      <div id="lessonQuestionBox" class="question-box"></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= LESSON RESULT ================= -->
+
+  <div id="lessonResultScreen" class="screen">
+
+    <div class="container">
+
+      <div id="lessonResult" class="result-card"></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= QUIZ CATEGORIES ================= -->
+
+  <div id="quizCategoriesScreen" class="screen">
+
+    <div class="container">
+
+      <button class="back-btn" onclick="goHome()">
+        ← Home
+      </button>
+
+      <h2 class="section-title">
+        🧠 Quiz Challenge
+      </h2>
+
+      <p class="subtitle">
+        Choose a category and test your knowledge.
+      </p>
+
+
+      <div class="quiz-category" onclick="startChallenge('physiology')">
+
+        <h3>❤️ Human Physiology</h3>
+
+        <p>
+          Test your knowledge of body functions.
+        </p>
+
+      </div>
+
+
+      <div class="quiz-category" onclick="startChallenge('cell')">
+
+        <h3>🔬 Cell Biology</h3>
+
+        <p>
+          Cells, organelles and cellular processes.
+        </p>
+
+      </div>
+
+
+      <div class="quiz-category" onclick="startChallenge('genetics')">
+
+        <h3>🧬 Genetics</h3>
+
+        <p>
+          DNA, genes and inheritance.
+        </p>
+
+      </div>
+
+
+      <div class="quiz-category" onclick="startChallenge('anatomy')">
+
+        <h3>🦴 Anatomy</h3>
+
+        <p>
+          Structure of the human body.
+        </p>
+
+      </div>
+
+
+      <div class="quiz-category" onclick="startChallenge('general')">
+
+        <h3>🌱 General Biology</h3>
+
+        <p>
+          Fundamental Biology concepts.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= CHALLENGE TEST ================= -->
+
+  <div id="challengeScreen" class="screen">
+
+    <div class="container">
+
+      <button class="back-btn" onclick="showQuizCategories()">
+        ← Categories
+      </button>
+
+      <div id="challengeQuestionBox" class="question-box"></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= CHALLENGE RESULT ================= -->
+
+  <div id="challengeResultScreen" class="screen">
+
+    <div class="container">
+
+      <div id="challengeResult" class="result-card"></div>
+
+    </div>
+
+  </div>
+
+
+</div>
+
+
+<script>
+
+  /* ============================================
+     TELEGRAM MINI APP
+  ============================================ */
+
+  if (window.Telegram && Telegram.WebApp) {
+
+    Telegram.WebApp.ready();
+
+    Telegram.WebApp.expand();
+
+  }
+
+
+  /* ============================================
+     BIOLOGY CONTENT
+  ============================================ */
+
+  const subjects = {
+
+    physiology: {
+
+      title: "Human Physiology",
+
+      description: "Understand how the human body functions.",
+
+      lessons: [
+
+        {
+
+          title: "Introduction to Human Physiology",
+
+          description: "Learn what physiology is and how the body maintains life.",
+
+          content: `
+
+            <h2>Introduction to Human Physiology</h2>
+
+            <p>
+              <strong>Physiology</strong> is the study of how living organisms
+              and their parts function.
+            </p>
+
+            <h3>What is Human Physiology?</h3>
+
+            <p>
+              Human physiology focuses on how the organs, tissues and cells
+              of the human body work together to maintain life.
+            </p>
+
+            <h3>Homeostasis</h3>
+
+            <p>
+              Homeostasis is the ability of the body to maintain a relatively
+              stable internal environment despite changes in the external
+              environment.
+            </p>
+
+            <p>
+              Examples include maintaining body temperature, blood glucose,
+              blood pressure and fluid balance.
+            </p>
+
+            <div class="tip-box">
+              💡 <strong>Remember:</strong>
+              Physiology explains how the body works, while anatomy mainly
+              describes the structure of the body.
+            </div>
+
+          `,
+
+          questions: [
+
+            {
+              question: "What is physiology?",
+              options: [
+                "The study of body structure",
+                "The study of how living organisms function",
+                "The study of diseases only",
+                "The study of bones only"
+              ],
+              answer: 1
+            },
+
+            {
+              question: "What does homeostasis mean?",
+              options: [
+                "Growth of the body",
+                "Movement of the body",
+                "Maintenance of a relatively stable internal environment",
+                "Digestion of food"
+              ],
+              answer: 2
+            },
+
+            {
+              question: "Which is an example of homeostasis?",
+              options: [
+                "Maintaining body temperature",
+                "Growing taller",
+                "Learning a new skill",
+                "Walking"
+              ],
+              answer: 0
+            },
+
+            {
+              question: "Human physiology mainly studies:",
+              options: [
+                "How the human body functions",
+                "Only human bones",
+                "Only diseases",
+                "Only microorganisms"
+              ],
+              answer: 0
+            },
+
+            {
+              question: "Anatomy mainly deals with:",
+              options: [
+                "Body structure",
+                "Body function",
+                "Blood glucose",
+                "Metabolism only"
+              ],
+              answer: 0
+            }
+
+          ]
+
+        },
+
+        {
+
+          title: "The Circulatory System",
+
+          description: "Learn the basic functions of the heart and blood vessels.",
+
+          content: `
+
+            <h2>The Circulatory System</h2>
+
+            <p>
+              The circulatory system transports blood throughout the body.
+              It helps deliver oxygen and nutrients and removes waste products.
+            </p>
+
+            <h3>The Heart</h3>
+
+            <p>
+              The heart is a muscular organ that pumps blood through the
+              circulatory system.
+            </p>
+
+            <h3>Blood Vessels</h3>
+
+            <ul>
+              <li><strong>Arteries</strong> carry blood away from the heart.</li>
+              <li><strong>Veins</strong> carry blood toward the heart.</li>
+              <li><strong>Capillaries</strong> allow exchange between blood and tissues.</li>
+            </ul>
+
+            <h3>Why is circulation important?</h3>
+
+            <p>
+              Cells need oxygen and nutrients to function. The circulatory
+              system helps transport these materials to tissues throughout
+              the body.
+            </p>
+
+            <div class="tip-box">
+              💡 Remember:
+              <strong>Arteries = Away from the heart.</strong>
+            </div>
+
+          `,
+
+          questions: [
+
+            {
+              question: "What is the main function of the heart?",
+              options: [
+                "To digest food",
+                "To pump blood",
+                "To produce urine",
+                "To store oxygen"
+              ],
+              answer: 1
+            },
+
+            {
+              question: "Arteries carry blood:",
+              options: [
+                "Toward the heart",
+                "Away from the heart",
+                "Only to the lungs",
+                "Only to the brain"
+              ],
+              answer: 1
+            },
+
+            {
+              question: "Veins carry blood:",
+              options: [
+                "Away from the heart",
+                "Toward the heart",
+                "Only to muscles",
+                "Only to the kidneys"
+              ],
+              answer: 1
+            },
+
+            {
+              question: "Where does exchange between blood and tissues mainly occur?",
+              options: [
+                "Arteries",
+                "Veins",
+                "Capillaries",
+                "Heart valves"
+              ],
+              answer: 2
+            },
+
+            {
+              question: "Which substance is transported by blood to body cells?",
+              options: [
+                "Oxygen",
+                "Only carbon dioxide",
+                "Only urine",
+                "Only bile"
+              ],
+              answer: 0
+            }
+
+          ]
+
+        },
+
+        {
+
+          title: "The Respiratory System",
+
+          description: "Learn how the body obtains oxygen and removes carbon dioxide.",
+
+          content: `
+
+            <h2>The Respiratory System</h2>
+
+            <p>
+              The respiratory system is responsible for gas exchange.
+              It allows the body to obtain oxygen and remove carbon dioxide.
+            </p>
+
+            <h3>Major organs</h3>
+
+            <ul>
+              <li>Nose and nasal cavity</li>
+              <li>Pharynx</li>
+              <li>Larynx</li>
+              <li>Trachea</li>
+              <li>Bronchi</li>
+              <li>Lungs</li>
+            </ul>
+
+            <h3>Alveoli</h3>
+
+            <p>
+              Alveoli are tiny air sacs in the lungs where oxygen and carbon
+              dioxide are exchanged between the air and blood.
+            </p>
+
+            <div class="tip-box">
+              💡 The respiratory system works closely with the circulatory
+              system to deliver oxygen to body tissues.
+            </div>
+
+          `,
+
+          questions: [
+
+            {
+              question: "What is the major function of the respiratory system?",
+              options: [
+                "Digestion",
+                "Gas exchange",
+                "Blood clotting",
+                "Movement"
+              ],
+              answer: 1
+            },
+
+            {
+              question: "Where does most gas exchange occur?",
+              options: [
+                "Trachea",
+                "Alveoli",
+                "Nose",
+                "Pharynx"
+              ],
+              answer: 1
+            },
+
+            {
+              question: "Which gas does the body need for cellular respiration?",
+              options: [
+                "Oxygen",
+                "Nitrogen",
+                "Helium",
+                "Hydrogen"
+              ],
+              answer: 0
+            },
+
+            {
+              question: "Which gas is removed from the body during respiration?",
+              options: [
+                "Oxygen",
+                "Carbon dioxide",
+                "Nitrogen",
+                "Helium"
+              ],
+              answer: 1
+            },
+
+            {
+              question: "The lungs are part of the:",
+              options: [
+                "Digestive system",
+                "Respiratory system",
+                "Skeletal system",
+                "Endocrine system"
+              ],
+              answer: 1
+            }
+
+          ]
+
+        }
+
+      ]
+
+    },
+
+
+    cell: {
+
+      title: "Cell Biology",
+
+      description: "Understand cells, organelles and cellular processes.",
+
+      lessons: [
+
+        {
+
+          title: "Introduction to Cells",
+
+          description: "Learn what cells are and why they are important.",
+
+          content: `
+
+            <h2>Introduction to Cells</h2>
+
+            <p>
+              The cell is the basic structural and functional unit of life.
+            </p>
+
+            <h3>Cell Theory</h3>
+
+            <p>
+              Cell theory states that all living organisms are made of one or
+              more cells, the cell is the basic unit of life, and new cells
+              arise from existing cells.
+            </p>
+
+            <h3>Types of cells</h3>
+
+            <p>
+              Cells can broadly be classified into prokaryotic and eukaryotic
+              cells.
+            </p>
+
+            <div class="tip-box">
+              💡 Think of the cell as the basic building block of living organisms.
+            </div>
+
+          `,
+
+          questions: [
+
+            {
+              question: "What is the basic structural and functional unit of life?",
+              options: [
+                "Organ",
+                "Tissue",
+                "Cell",
+                "System"
+              ],
+              answer: 2
+            },
+
+            {
+              question: "Which statement is part of cell theory?",
+              options: [
+                "All organisms are made of cells",
+                "Only animals have cells",
+                "Cells are not living",
+                "Cells only exist in humans"
+              ],
+              answer: 0
+            },
+
+            {
+              question: "New cells arise from:",
+              options: [
+                "Air",
+                "Existing cells",
+                "Water",
+                "Minerals"
+              ],
+              answer: 1
+            },
+
+            {
+              question: "Which is a broad classification of cells?",
+              options: [
+                "Prokaryotic",
+                "Digestive",
+                "Muscular",
+                "Skeletal"
+              ],
+              answer: 0
+            },
+
+            {
+              question: "Cells are important because they:",
+              options: [
+                "Form the basis of living organisms",
+                "Only store water",
+                "Only produce bones",
+                "Only exist in plants"
+              ],
+              answer: 0
+            }
+
+          ]
+
+        },
+
+        {
+
+          title: "Cell Organelles",
+
+          description: "Learn the functions of important cell organelles.",
+
+          content: `
+
+            <h2>Cell Organelles</h2>
+
+            <p>
+              Organelles are specialized structures within cells that perform
+              specific functions.
+            </p>
+
+            <h3>Nucleus</h3>
+
+            <p>
+              The nucleus contains genetic material and helps control many
+              cellular activities.
+            </p>
+
+            <h3>Mitochondria</h3>
+
+            <p>
+              Mitochondria are important sites of aerobic cellular respiration
+              and ATP production.
+            </p>
+
+            <h3>Ribosomes</h3>
+
+            <p>
+              Ribosomes are involved in protein synthesis.
+            </p>
+
+            <div class="tip-box">
+              💡 Mitochondria are often called the "powerhouses" of the cell
+              because of their role in ATP production.
+            </div>
+
+          `,
+
+          questions: [
+
+            {
+              question: "Which organelle contains most of the cell's genetic material?",
+              options: [
+                "Nucleus",
+                "Ribosome",
+                "Golgi apparatus",
+                "Lysosome"
+              ],
+              answer: 0
+            },
+
+            {
+              question: "Mitochondria are important for:",
+              options: [
+                "ATP production",
+                "Bone formation",
+                "Blood clotting",
+                "Hearing"
+              ],
+              answer: 0
+            },
+
+            {
+              question: "Ribosomes are mainly involved in:",
+              options: [
+                "Protein synthesis",
+                "Fat storage",
+                "Movement",
+                "Water absorption"
+              ],
+              answer: 0
+            },
+
+            {
+              question: "Organelles are:",
+              options: [
+                "Specialized cell structures",
+                "Whole organisms",
+                "Bones",
+                "Blood cells"
+              ],
+              answer: 0
+            },
+
+            {
+              question: "Which organelle is often called the powerhouse of the cell?",
+              options: [
+                "Nucleus",
+                "Mitochondrion",
+                "Ribosome",
+                "Lysosome"
+              ],
+              answer: 1
+            }
+
+          ]
+
+        }
+
+      ]
+
+    },
+
+
+    genetics: {
+
+      title: "Genetics",
+
+      description: "Learn about DNA, genes and inheritance.",
+
+      lessons: [
+
+        {
+
+          title: "Introduction to Genetics",
+
+          description: "Understand genes, DNA and heredity.",
+
+          content: `
+
+            <h2>Introduction to Genetics</h2>
+
+            <p>
+              Genetics is the branch of Biology concerned with heredity and
+              variation in organisms.
+            </p>
+
+            <h3>DNA</h3>
+
+            <p>
+              DNA, or deoxyribonucleic acid, contains genetic information
+              used in the development and functioning of organisms.
+            </p>
+
+            <h3>Genes</h3>
+
+            <p>
+              A gene is a segment of DNA that contributes to a particular
+              characteristic or biological function.
+            </p>
+
+            <div class="tip-box">
+              💡 Genetics helps us understand why characteristics can be
+              passed from parents to offspring.
+            </div>
+
+          `,
+
+          questions: [
+
+            {
+              question: "Genetics is mainly concerned with:",
+              options: [
+                "Heredity and variation",
+                "Digestion only",
+                "Bones only",
+                "Respiration only"
+              ],
+              answer: 0
+            },
+
+            {
+              question: "What does DNA stand for?",
+              options: [
+                "Deoxyribonucleic acid",
+                "Dynamic nuclear acid",
+                "Double nitrogen acid",
+                "Deoxygenated nucleic acid"
+              ],
+              answer: 0
+            },
+
+            {
+              question: "A gene is a segment of:",
+              options: [
+                "Protein",
+                "DNA",
+                "Fat",
+                "Water"
+              ],
+              answer: 1
+            },
+
+            {
+              question: "Genetic information can be passed from:",
+              options: [
+                "Parents to offspring",
+                "Water to cells",
+                "Air to bones",
+                "Food to genes"
+              ],
+              answer: 0
+            },
+
+            {
+              question: "DNA contains:",
+              options: [
+                "Genetic information",
+                "Only water",
+                "Only oxygen",
+                "Only minerals"
+              ],
+              answer: 0
+            }
+
+          ]
+
+        }
+
+      ]
+
+    },
+
+
+    anatomy: {
+
+      title: "Anatomy",
+
+      description: "Study the structure of the human body.",
+
+      lessons: [
+
+        {
+
+          title: "Introduction to Human Anatomy",
+
+          description: "Learn the basic organization of the human body.",
+
+          content: `
+
+            <h2>Introduction to Human Anatomy</h2>
+
+            <p>
+              Anatomy is the study of the structure of living organisms.
+            </p>
+
+            <h3>Levels of organization</h3>
+
+            <ul>
+              <li>Cells</li>
+              <li>Tissues</li>
+              <li>Organs</li>
+              <li>Organ systems</li>
+              <li>Organism</li>
+            </ul>
+
+            <p>
+              Cells combine to form tissues, tissues form organs, and organs
+              work together in organ systems.
+            </p>
+
+            <div class="tip-box">
+              💡 Example: cardiac muscle cells → cardiac tissue → heart →
+              cardiovascular system.
+            </div>
+
+          `,
+
+          questions: [
+
+            {
+              question: "Anatomy is the study of:",
+              options: [
+                "Body structure",
+                "Body function",
+                "Diseases only",
+                "Genetics only"
+              ],
+              answer: 0
+            },
+
+            {
+              question: "Which comes directly after cells in biological organization?",
+              options: [
+                "Organs",
+                "Tissues",
+                "Organ systems",
+                "Organisms"
+              ],
+              answer: 1
+            },
+
+            {
+              question: "Several tissues can form a:",
+              options: [
+                "Cell",
+                "Organ",
+                "Molecule",
+                "Gene"
+              ],
+              answer: 1
+            },
+
+            {
+              question: "The heart is an example of a:",
+              options: [
+                "Cell",
+                "Tissue",
+                "Organ",
+                "Molecule"
+              ],
+              answer: 2
+            },
+
+            {
+              question: "Several organs working together form an:",
+              options: [
+                "Organ system",
+                "Individual cell",
+                "Atom",
+                "Gene"
+              ],
+              answer: 0
+            }
+
+          ]
+
+        }
+
+      ]
+
+    },
+
+
+    general: {
+
+      title: "General Biology",
+
+      description: "Build a strong foundation in Biology.",
+
+      lessons: [
+
+        {
+
+          title: "Characteristics of Living Things",
+
+          description: "Learn the major characteristics of living organisms.",
+
+          content: `
+
+            <h2>Characteristics of Living Things</h2>
+
+            <p>
+              Living organisms share several important characteristics.
+            </p>
+
+            <ul>
+              <li>Nutrition</li>
+              <li>Respiration</li>
+              <li>Movement</li>
+              <li>Growth</li>
+              <li>Reproduction</li>
+              <li>Excretion</li>
+              <li>Sensitivity or response to stimuli</li>
+            </ul>
+
+            <h3>Why are these important?</h3>
+
+            <p>
+              These characteristics help distinguish living organisms from
+              non-living things.
+            </p>
+
+            <div class="tip-box">
+              💡 A useful memory aid is MRS GREN:
+              Movement, Respiration, Sensitivity, Growth, Reproduction,
+              Excretion and Nutrition.
+            </div>
+
+          `,
+
+          questions: [
+
+            {
+              question: "Which is a characteristic of living organisms?",
+              options: [
+                "Growth",
+                "Rusting",
+                "Breaking",
+                "Melting"
+              ],
+              answer: 0
+            },
+
+            {
+              question: "Which process involves obtaining nutrients?",
+              options: [
+                "Nutrition",
+                "Excretion",
+                "Movement",
+                "Sensitivity"
+              ],
+              answer: 0
+            },
+
+            {
+              question: "Removal of metabolic waste is called:",
+              options: [
+                "Nutrition",
+                "Excretion",
+                "Growth",
+                "Reproduction"
+              ],
+              answer: 1
+            },
+
+            {
+              question: "Production of new organisms is:",
+              options: [
+                "Respiration",
+                "Reproduction",
+                "Nutrition",
+                "Movement"
+              ],
+              answer: 1
+            },
+
+            {
+              question: "Response to changes in the environment is called:",
+              options: [
+                "Sensitivity",
+                "Nutrition",
+                "Growth",
+                "Excretion"
+              ],
+              answer: 0
+            }
+
+          ]
+
+        }
+
+      ]
+
+    }
+
+  };
+
+
+  /* ============================================
+     APPLICATION STATE
+  ============================================ */
+
+  let currentSubject = null;
+
+  let currentLessonIndex = 0;
+
+  let currentLessonQuestion = 0;
+
+  let lessonScore = 0;
+
+  let challengeQuestions = [];
+
+  let challengeQuestionIndex = 0;
+
+  let challengeScore = 0;
+
+
+  /*
+    This stores progress on the device.
+
+    Later we can connect this to a proper database/account
+    so progress follows the learner across devices.
+  */
+
+  let progress = JSON.parse(
+    localStorage.getItem("biologyProgress") || "{}"
+  );
+
+
+  /* ============================================
+     SCREEN MANAGEMENT
+  ============================================ */
+
+  function hideAllScreens() {
+
+    document.querySelectorAll(".screen").forEach(function(screen) {
+
+      screen.classList.remove("active");
+
+    });
+
+  }
+
+
+  function showScreen(id) {
+
+    hideAllScreens();
+
+    document.getElementById(id).classList.add("active");
+
+    window.scrollTo(0, 0);
+
+  }
+
+
+  function goHome() {
+
+    showScreen("homeScreen");
+
+  }
+
+
+  /* ============================================
+     LEARNING SECTION
+  ============================================ */
+
+  function showSubjects() {
+
+    showScreen("subjectsScreen");
+
+  }
+
+
+  function showLessons(subjectKey) {
+
+    currentSubject = subjectKey;
+
+    const subject = subjects[subjectKey];
+
+    document.getElementById("subjectTitle").textContent =
+      subject.title;
+
+    document.getElementById("subjectDescription").textContent =
+      subject.description;
+
+    renderLessons();
+
+    showScreen("lessonsScreen");
+
+  }
+
+
+  function renderLessons() {
+
+    const subject = subjects[currentSubject];
+
+    const list = document.getElementById("lessonsList");
+
+    list.innerHTML = "";
+
+    let completed = 0;
+
+    subject.lessons.forEach(function(lesson, index) {
+
+      const key = currentSubject + "_" + index;
+
+      const isCompleted = progress[key] === true;
+
+      if (isCompleted) {
+        completed++;
       }
-    ];
 
-    let currentQuestion = 0;
-    let score = 0;
+      /*
+        Lesson 1 is unlocked automatically.
 
-    function loadQuestion() {
-      const q = questions[currentQuestion];
+        Every next lesson is unlocked only when the
+        previous lesson has been completed.
+      */
 
-      document.getElementById("question").textContent = q.question;
+      const unlocked =
+        index === 0 ||
+        progress[currentSubject + "_" + (index - 1)] === true;
 
-      const answersDiv = document.getElementById("answers");
-      answersDiv.innerHTML = "";
+      const card = document.createElement("div");
 
-      q.answers.forEach(answer => {
-        const button = document.createElement("button");
-        button.textContent = answer;
+      card.className =
+        "lesson-card " +
+        (unlocked ? "unlocked" : "locked");
 
-        button.onclick = function() {
-          if (answer === q.correct) {
-            score++;
-            alert("Correct! 🎉");
-          } else {
-            alert("Not quite. The correct answer is " + q.correct);
-          }
+      card.innerHTML = `
+
+        <div class="lesson-top">
+
+          <div>
+
+            <div class="lesson-number">
+              Lesson ${index + 1}
+            </div>
+
+            <h3>${lesson.title}</h3>
+
+            <p>${lesson.description}</p>
+
+          </div>
+
+          <div class="lesson-status">
+
+            ${
+              isCompleted
+              ? "✅"
+              : unlocked
+              ? "▶️"
+              : "🔒"
+            }
+
+          </div>
+
+        </div>
+
+      `;
+
+      if (unlocked) {
+
+        card.onclick = function() {
+
+          openLesson(index);
+
         };
 
-        answersDiv.appendChild(button);
-      });
-
-      document.getElementById("score").textContent =
-        "Score: " + score;
-    }
-
-    function nextQuestion() {
-      currentQuestion++;
-
-      if (currentQuestion >= questions.length) {
-        document.getElementById("question").textContent =
-          "Quiz completed! 🎉";
-
-        document.getElementById("answers").innerHTML = "";
-
-        document.getElementById("next").style.display = "none";
-
-        document.getElementById("score").textContent =
-          "Your final score: " + score + "/" + questions.length;
-
-        return;
       }
 
-      loadQuestion();
+      list.appendChild(card);
+
+    });
+
+
+    const percentage =
+      Math.round((completed / subject.lessons.length) * 100);
+
+    document.getElementById("progressText").textContent =
+      "Progress: " + percentage + "%";
+
+    document.getElementById("progressBar").style.width =
+      percentage + "%";
+
+  }
+
+
+  function openLesson(index) {
+
+    currentLessonIndex = index;
+
+    const lesson =
+      subjects[currentSubject].lessons[index];
+
+    document.getElementById("lessonContent").innerHTML =
+      lesson.content;
+
+    showScreen("lessonScreen");
+
+  }
+
+
+  function returnToLessons() {
+
+    renderLessons();
+
+    showScreen("lessonsScreen");
+
+  }
+
+
+  /* ============================================
+     LESSON TEST
+  ============================================ */
+
+  function startLessonTest() {
+
+    currentLessonQuestion = 0;
+
+    lessonScore = 0;
+
+    renderLessonQuestion();
+
+    showScreen("lessonTestScreen");
+
+  }
+
+
+  function renderLessonQuestion() {
+
+    const lesson =
+      subjects[currentSubject].lessons[currentLessonIndex];
+
+    const question =
+      lesson.questions[currentLessonQuestion];
+
+    const total =
+      lesson.questions.length;
+
+    let html = `
+
+      <div class="question-number">
+        Question ${currentLessonQuestion + 1} of ${total}
+      </div>
+
+      <div class="question">
+        ${question.question}
+      </div>
+
+    `;
+
+
+    question.options.forEach(function(option, index) {
+
+      html += `
+
+        <button
+          class="option"
+          onclick="answerLessonQuestion(${index})">
+
+          ${option}
+
+        </button>
+
+      `;
+
+    });
+
+
+    document.getElementById("lessonQuestionBox").innerHTML =
+      html;
+
+  }
+
+
+  function answerLessonQuestion(selected) {
+
+    const lesson =
+      subjects[currentSubject].lessons[currentLessonIndex];
+
+    const question =
+      lesson.questions[currentLessonQuestion];
+
+    const buttons =
+      document.querySelectorAll("#lessonQuestionBox .option");
+
+
+    buttons.forEach(function(button) {
+
+      button.disabled = true;
+
+    });
+
+
+    if (selected === question.answer) {
+
+      buttons[selected].classList.add("correct");
+
+      lessonScore++;
+
+    } else {
+
+      buttons[selected].classList.add("wrong");
+
+      buttons[question.answer].classList.add("correct");
+
     }
 
-    loadQuestion();
-  </script>
+
+    setTimeout(function() {
+
+      currentLessonQuestion++;
+
+      if (
+        currentLessonQuestion <
+        lesson.questions.length
+      ) {
+
+        renderLessonQuestion();
+
+      } else {
+
+        showLessonResult();
+
+      }
+
+    }, 900);
+
+  }
+
+
+  function showLessonResult() {
+
+    const lesson =
+      subjects[currentSubject].lessons[currentLessonIndex];
+
+    const total =
+      lesson.questions.length;
+
+    const percentage =
+      Math.round((lessonScore / total) * 100);
+
+    const passed =
+      percentage >= 80;
+
+
+    let html = "";
+
+    if (passed) {
+
+      const key =
+        currentSubject + "_" + currentLessonIndex;
+
+      progress[key] = true;
+
+      localStorage.setItem(
+        "biologyProgress",
+        JSON.stringify(progress)
+      );
+
+
+      html = `
+
+        <div class="result-icon">🎉</div>
+
+        <h2>Lesson Passed!</h2>
+
+        <div class="score">
+          ${percentage}%
+        </div>
+
+        <p class="result-message">
+
+          Excellent work! You scored
+          ${lessonScore} out of ${total}.
+
+          The next lesson is now unlocked.
+
+        </p>
+
+        <button
+          class="main-btn"
+          onclick="returnToLessons()">
+
+          🔓 Continue Learning
+
+        </button>
+
+      `;
+
+    } else {
+
+      html = `
+
+        <div class="result-icon">📖</div>
+
+        <h2>Keep Learning</h2>
+
+        <div class="score">
+          ${percentage}%
+        </div>
+
+        <p class="result-message">
+
+          You scored ${lessonScore} out of ${total}.
+
+          You need at least 80% to unlock the next lesson.
+
+          Review the lesson and try again.
+
+        </p>
+
+        <button
+          class="main-btn"
+          onclick="returnToLesson()">
+
+          📖 Review Lesson
+
+        </button>
+
+        <button
+          class="secondary-btn"
+          onclick="startLessonTest()">
+
+          🔄 Retake Test
+
+        </button>
+
+      `;
+
+    }
+
+
+    document.getElementById("lessonResult").innerHTML =
+      html;
+
+    showScreen("lessonResultScreen");
+
+  }
+
+
+  function returnToLesson() {
+
+    const lesson =
+      subjects[currentSubject].lessons[currentLessonIndex];
+
+    document.getElementById("lessonContent").innerHTML =
+      lesson.content;
+
+    showScreen("lessonScreen");
+
+  }
+
+
+  /* ============================================
+     QUIZ CHALLENGE
+  ============================================ */
+
+  function showQuizCategories() {
+
+    showScreen("quizCategoriesScreen");
+
+  }
+
+
+  function startChallenge(category) {
+
+    const subject = subjects[category];
+
+    challengeQuestions = [];
+
+
+    /*
+      Collect questions from all lessons in the category.
+    */
+
+    subject.lessons.forEach(function(lesson) {
+
+      lesson.questions.forEach(function(question) {
+
+        challengeQuestions.push(question);
+
+      });
+
+    });
+
+
+    /*
+      Shuffle questions.
+    */
+
+    challengeQuestions =
+      challengeQuestions.sort(
+        () => Math.random() - 0.5
+      );
+
+
+    /*
+      Use up to 10 questions.
+    */
+
+    challengeQuestions =
+      challengeQuestions.slice(0, 10);
+
+
+    challengeQuestionIndex = 0;
+
+    challengeScore = 0;
+
+    renderChallengeQuestion();
+
+    showScreen("challengeScreen");
+
+  }
+
+
+  function renderChallengeQuestion() {
+
+    const question =
+      challengeQuestions[challengeQuestionIndex];
+
+    const total =
+      challengeQuestions.length;
+
+
+    let html = `
+
+      <div class="question-number">
+
+        Question ${challengeQuestionIndex + 1}
+        of ${total}
+
+      </div>
+
+      <div class="question">
+
+        ${question.question}
+
+      </div>
+
+    `;
+
+
+    question.options.forEach(function(option, index) {
+
+      html += `
+
+        <button
+          class="option"
+          onclick="answerChallengeQuestion(${index})">
+
+          ${option}
+
+        </button>
+
+      `;
+
+    });
+
+
+    document.getElementById("challengeQuestionBox").innerHTML =
+      html;
+
+  }
+
+
+  function answerChallengeQuestion(selected) {
+
+    const question =
+      challengeQuestions[challengeQuestionIndex];
+
+    const buttons =
+      document.querySelectorAll("#challengeQuestionBox .option");
+
+
+    buttons.forEach(function(button) {
+
+      button.disabled = true;
+
+    });
+
+
+    if (selected === question.answer) {
+
+      buttons[selected].classList.add("correct");
+
+      challengeScore++;
+
+    } else {
+
+      buttons[selected].classList.add("wrong");
+
+      buttons[question.answer].classList.add("correct");
+
+    }
+
+
+    setTimeout(function() {
+
+      challengeQuestionIndex++;
+
+      if (
+        challengeQuestionIndex <
+        challengeQuestions.length
+      ) {
+
+        renderChallengeQuestion();
+
+      } else {
+
+        showChallengeResult();
+
+      }
+
+    }, 800);
+
+  }
+
+
+  function showChallengeResult() {
+
+    const total =
+      challengeQuestions.length;
+
+    const percentage =
+      Math.round((challengeScore / total) * 100);
+
+
+    document.getElementById("challengeResult").innerHTML = `
+
+      <div class="result-icon">🏆</div>
+
+      <h2>Quiz Complete!</h2>
+
+      <div class="score">
+        ${percentage}%
+      </div>
+
+      <p class="result-message">
+
+        You scored
+        ${challengeScore}
+        out of
+        ${total}.
+
+      </p>
+
+      <button
+        class="main-btn"
+        onclick="showQuizCategories()">
+
+        🔄 Try Another Quiz
+
+      </button>
+
+      <button
+        class="secondary-btn"
+        onclick="goHome()">
+
+        🏠 Home
+
+      </button>
+
+    `;
+
+
+    showScreen("challengeResultScreen");
+
+  }
+
+</script>
 
 </body>
 </html>
