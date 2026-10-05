@@ -394,46 +394,83 @@
   </div>
 
 
+
   <!-- ================= HOME ================= -->
 
-  <div id="homeScreen" class="screen active">
+<div id="homeScreen" class="screen active">
 
-    <div class="container">
+  <div class="container">
 
-      <div class="home-card">
-        <h3>📚 Learn Biology</h3>
+    <div class="home-card">
 
-        <p>
-          Learn Biology step-by-step through structured lessons.
-          Complete a lesson, take the test and unlock the next lesson.
-        </p>
+      <h3>📚 Learn Biology</h3>
 
-        <button class="main-btn" onclick="showSubjects()">
-          Start Learning
-        </button>
-      </div>
+      <p>
+        Learn Biology step-by-step through structured lessons.
+        Complete lessons, take tests and unlock new topics.
+      </p>
 
-
-      <div class="home-card">
-        <h3>🧠 Quiz Challenge</h3>
-
-        <p>
-          Test your Biology knowledge with questions from different
-          areas of Biology.
-        </p>
-
-        <button class="main-btn" onclick="showQuizCategories()">
-          Take a Quiz
-        </button>
-      </div>
+      <button class="main-btn" onclick="showSubjects()">
+        Start Learning
+      </button>
 
     </div>
 
-    <div class="footer">
-      Biology Hub • Learn • Practice • Grow
+
+    <div class="home-card">
+
+      <h3>📝 Past Questions</h3>
+
+      <p>
+        Practice university Biology and Human Physiology
+        examination questions with answers and explanations.
+      </p>
+
+      <button class="main-btn" onclick="showPastQuestions()">
+        Practice Past Questions
+      </button>
+
+    </div>
+
+
+    <div class="home-card">
+
+      <h3>🧠 Quiz Challenge</h3>
+
+      <p>
+        Test your Biology knowledge with random questions
+        from different subjects.
+      </p>
+
+      <button class="main-btn" onclick="showQuizCategories()">
+        Take a Quiz
+      </button>
+
+    </div>
+
+
+    <div class="home-card">
+
+      <h3>📊 My Progress</h3>
+
+      <p>
+        Track your lessons, completed topics and learning
+        progress.
+      </p>
+
+      <button class="main-btn" onclick="showProgress()">
+        View My Progress
+      </button>
+
     </div>
 
   </div>
+
+  <div class="footer">
+    Biology Hub • Learn • Practice • Prepare
+  </div>
+
+</div>
 
 
   <!-- ================= SUBJECTS ================= -->
@@ -633,8 +670,183 @@
     </div>
 
   </div>
+<!-- ================= PAST QUESTIONS ================= -->
+
+<div id="pastQuestionsScreen" class="screen">
+
+  <div class="container">
+
+    <button class="back-btn" onclick="goHome()">
+      ← Home
+    </button>
+
+    <h2 class="section-title">
+      📝 Past Questions
+    </h2>
+
+    <p class="subtitle">
+      Choose a subject to practice examination questions.
+    </p>
 
 
+    <div class="quiz-category"
+         onclick="showPastQuestionSubject('physiology')">
+
+      <h3>❤️ Human Physiology</h3>
+
+      <p>
+        Practice Human Physiology examination questions.
+      </p>
+
+    </div>
+
+
+    <div class="quiz-category"
+         onclick="showPastQuestionSubject('anatomy')">
+
+      <h3>🦴 Anatomy</h3>
+
+      <p>
+        Practice Anatomy examination questions.
+      </p>
+
+    </div>
+
+
+    <div class="quiz-category"
+         onclick="showPastQuestionSubject('cell')">
+
+      <h3>🔬 Cell Biology</h3>
+
+      <p>
+        Practice Cell Biology examination questions.
+      </p>
+
+    </div>
+
+
+    <div class="quiz-category"
+         onclick="showPastQuestionSubject('general')">
+
+      <h3>🌱 General Biology</h3>
+
+      <p>
+        Practice General Biology examination questions.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+<!-- ================= PAST QUESTION LEVEL ================= -->
+
+<div id="pastQuestionLevelScreen" class="screen">
+
+  <div class="container">
+
+    <button class="back-btn" onclick="showPastQuestions()">
+      ← Subjects
+    </button>
+
+    <h2 id="pastQuestionSubjectTitle"
+        class="section-title">
+      Human Physiology
+    </h2>
+
+    <p class="subtitle">
+      Choose your level.
+    </p>
+
+
+    <div class="quiz-category"
+         onclick="startPastQuestions('100 Level')">
+
+      <h3>🎓 100 Level</h3>
+
+      <p>
+        Introductory questions and foundational concepts.
+      </p>
+
+    </div>
+
+
+    <div class="quiz-category"
+         onclick="startPastQuestions('200 Level')">
+
+      <h3>🎓 200 Level</h3>
+
+      <p>
+        Intermediate university-level questions.
+      </p>
+
+    </div>
+
+
+    <div class="quiz-category"
+         onclick="startPastQuestions('300 Level')">
+
+      <h3>🎓 300 Level</h3>
+
+      <p>
+        Advanced undergraduate questions.
+      </p>
+
+    </div>
+
+
+    <div class="quiz-category"
+         onclick="startPastQuestions('400 Level')">
+
+      <h3>🎓 400 Level</h3>
+
+      <p>
+        Advanced and professional-level questions.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+<!-- ================= PAST QUESTION TEST ================= -->
+
+<div id="pastQuestionTestScreen" class="screen">
+
+  <div class="container">
+
+    <button class="back-btn"
+            onclick="showPastQuestionLevel()">
+
+      ← Levels
+
+    </button>
+
+    <div id="pastQuestionBox"
+         class="question-box">
+
+    </div>
+
+  </div>
+
+</div>
+
+  <!-- ================= PAST QUESTION RESULT ================= -->
+
+<div id="pastQuestionResultScreen"
+     class="screen">
+
+  <div class="container">
+
+    <div id="pastQuestionResult"
+         class="result-card">
+
+    </div>
+
+  </div>
+
+</div>
+  
   <!-- ================= QUIZ CATEGORIES ================= -->
 
   <div id="quizCategoriesScreen" class="screen">
@@ -1667,6 +1879,143 @@
   let progress = JSON.parse(
     localStorage.getItem("biologyProgress") || "{}"
   );
+/* ============================================
+   PAST QUESTIONS
+============================================ */
+
+let currentPastQuestionSubject = null;
+
+let currentPastQuestionLevel = null;
+
+let pastQuestions = [
+  
+  {
+    subject: "physiology",
+    level: "100 Level",
+
+    question:
+      "What is the study of how the human body functions called?",
+
+    options: [
+      "Anatomy",
+      "Physiology",
+      "Histology",
+      "Pathology"
+    ],
+
+    answer: 1,
+
+    explanation:
+      "Physiology is the study of the functions and processes of living organisms."
+  },
+
+
+  {
+    subject: "physiology",
+    level: "100 Level",
+
+    question:
+      "Which of the following best describes homeostasis?",
+
+    options: [
+      "Growth of an organism",
+      "Maintenance of a relatively stable internal environment",
+      "Production of energy only",
+      "Movement of the body"
+    ],
+
+    answer: 1,
+
+    explanation:
+      "Homeostasis refers to the maintenance of a relatively stable internal environment despite external changes."
+  },
+
+
+  {
+    subject: "physiology",
+    level: "100 Level",
+
+    question:
+      "Which organ pumps blood throughout the human body?",
+
+    options: [
+      "Liver",
+      "Kidney",
+      "Heart",
+      "Lung"
+    ],
+
+    answer: 2,
+
+    explanation:
+      "The heart is a muscular organ that pumps blood through the circulatory system."
+  },
+
+
+  {
+    subject: "anatomy",
+    level: "100 Level",
+
+    question:
+      "What is the study of body structure called?",
+
+    options: [
+      "Physiology",
+      "Anatomy",
+      "Genetics",
+      "Ecology"
+    ],
+
+    answer: 1,
+
+    explanation:
+      "Anatomy is the scientific study of the structure of the body."
+  },
+
+
+  {
+    subject: "cell",
+    level: "100 Level",
+
+    question:
+      "What is regarded as the basic structural and functional unit of life?",
+
+    options: [
+      "Tissue",
+      "Organ",
+      "Cell",
+      "Organ system"
+    ],
+
+    answer: 2,
+
+    explanation:
+      "The cell is considered the basic structural and functional unit of living organisms."
+  },
+
+
+  {
+    subject: "general",
+    level: "100 Level",
+
+    question:
+      "Which of the following is a characteristic of living organisms?",
+
+    options: [
+      "Growth",
+      "Rusting",
+      "Melting",
+      "Breaking"
+    ],
+
+    answer: 0,
+
+    explanation:
+      "Growth is one of the characteristics used to identify living organisms."
+  }
+
+];
+  
 
 
   /* ============================================
@@ -2310,6 +2659,373 @@
     showScreen("challengeResultScreen");
 
   }
+
+  /* ============================================
+   PAST QUESTIONS FUNCTIONS
+============================================ */
+
+function showPastQuestions() {
+
+  showScreen("pastQuestionsScreen");
+
+}
+
+
+function showPastQuestionSubject(subject) {
+
+  currentPastQuestionSubject = subject;
+
+  const subjectNames = {
+
+    physiology: "❤️ Human Physiology",
+
+    anatomy: "🦴 Anatomy",
+
+    cell: "🔬 Cell Biology",
+
+    general: "🌱 General Biology"
+
+  };
+
+  document.getElementById(
+    "pastQuestionSubjectTitle"
+  ).textContent = subjectNames[subject];
+
+  showScreen("pastQuestionLevelScreen");
+
+}
+
+
+function showPastQuestionLevel() {
+
+  showScreen("pastQuestionLevelScreen");
+
+}
+
+
+function startPastQuestions(level) {
+
+  currentPastQuestionLevel = level;
+
+  const availableQuestions =
+    pastQuestions.filter(function(question) {
+
+      return (
+        question.subject === currentPastQuestionSubject &&
+        question.level === currentPastQuestionLevel
+      );
+
+    });
+
+
+  if (availableQuestions.length === 0) {
+
+    document.getElementById(
+      "pastQuestionBox"
+    ).innerHTML = `
+
+      <div class="result-card">
+
+        <div class="result-icon">
+          📚
+        </div>
+
+        <h2>Questions Coming Soon</h2>
+
+        <p class="result-message">
+
+          We haven't added past questions for
+          ${currentPastQuestionLevel}
+          yet.
+
+          More questions will be added soon.
+
+        </p>
+
+        <button
+          class="main-btn"
+          onclick="showPastQuestionLevel()">
+
+          ← Choose Another Level
+
+        </button>
+
+      </div>
+
+    `;
+
+    showScreen("pastQuestionTestScreen");
+
+    return;
+
+  }
+
+
+  let currentQuestion = 0;
+
+  let score = 0;
+
+
+  function renderQuestion() {
+
+    const question =
+      availableQuestions[currentQuestion];
+
+    let html = `
+
+      <div class="question-number">
+
+        Question ${currentQuestion + 1}
+        of ${availableQuestions.length}
+
+      </div>
+
+      <div class="question">
+
+        ${question.question}
+
+      </div>
+
+    `;
+
+
+    question.options.forEach(function(option, index) {
+
+      html += `
+
+        <button
+          class="option"
+          onclick="answerPastQuestion(
+            ${index},
+            ${currentQuestion}
+          )">
+
+          ${option}
+
+        </button>
+
+      `;
+
+    });
+
+
+    document.getElementById(
+      "pastQuestionBox"
+    ).innerHTML = html;
+
+  }
+
+
+  window.answerPastQuestion =
+    function(selected, questionIndex) {
+
+      const question =
+        availableQuestions[questionIndex];
+
+      const buttons =
+        document.querySelectorAll(
+          "#pastQuestionBox .option"
+        );
+
+
+      buttons.forEach(function(button) {
+
+        button.disabled = true;
+
+      });
+
+
+      if (selected === question.answer) {
+
+        buttons[selected]
+          .classList.add("correct");
+
+        score++;
+
+      } else {
+
+        buttons[selected]
+          .classList.add("wrong");
+
+        buttons[question.answer]
+          .classList.add("correct");
+
+      }
+
+
+      setTimeout(function() {
+
+        currentQuestion++;
+
+
+        if (
+          currentQuestion <
+          availableQuestions.length
+        ) {
+
+          renderQuestion();
+
+        } else {
+
+          showPastQuestionResult(
+            score,
+            availableQuestions.length
+          );
+
+        }
+
+      }, 1200);
+
+    };
+
+
+  renderQuestion();
+
+  showScreen("pastQuestionTestScreen");
+
+}
+
+
+function showPastQuestionResult(score, total) {
+
+  const percentage =
+    Math.round((score / total) * 100);
+
+
+  document.getElementById(
+    "pastQuestionResult"
+  ).innerHTML = `
+
+    <div class="result-icon">
+      🎓
+    </div>
+
+    <h2>Practice Complete!</h2>
+
+    <div class="score">
+      ${percentage}%
+    </div>
+
+    <p class="result-message">
+
+      You scored
+      ${score}
+      out of
+      ${total}.
+
+    </p>
+
+
+    <button
+      class="main-btn"
+      onclick="showPastQuestionLevel()">
+
+      🔄 Practice Again
+
+    </button>
+
+
+    <button
+      class="secondary-btn"
+      onclick="goHome()">
+
+      🏠 Home
+
+    </button>
+
+  `;
+
+
+  showScreen("pastQuestionResultScreen");
+
+}
+
+
+/* ============================================
+   MY PROGRESS
+============================================ */
+
+function showProgress() {
+
+  let totalLessons = 0;
+
+  let completedLessons = 0;
+
+
+  Object.keys(subjects).forEach(function(subjectKey) {
+
+    const subject = subjects[subjectKey];
+
+    totalLessons += subject.lessons.length;
+
+
+    subject.lessons.forEach(function(lesson, index) {
+
+      const key =
+        subjectKey + "_" + index;
+
+      if (progress[key] === true) {
+
+        completedLessons++;
+
+      }
+
+    });
+
+  });
+
+
+  const percentage =
+    totalLessons === 0
+    ? 0
+    : Math.round(
+        (completedLessons / totalLessons) * 100
+      );
+
+
+  document.getElementById(
+    "challengeResult"
+  ).innerHTML = `
+
+    <div class="result-icon">
+      📊
+    </div>
+
+    <h2>My Progress</h2>
+
+    <div class="score">
+      ${percentage}%
+    </div>
+
+    <p class="result-message">
+
+      You have completed
+      <strong>
+        ${completedLessons}
+      </strong>
+      out of
+      <strong>
+        ${totalLessons}
+      </strong>
+      available lessons.
+
+    </p>
+
+
+    <button
+      class="main-btn"
+      onclick="goHome()">
+
+      🏠 Back Home
+
+    </button>
+
+  `;
+
+
+  showScreen("challengeResultScreen");
+
+}
 
 </script>
 
