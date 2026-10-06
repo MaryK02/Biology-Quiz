@@ -3029,6 +3029,54 @@ function showProgress() {
   
 <script src="data.js"></script>
 
+  /* ==========================================================================
+   DYNAMIC LESSON & QUIZ RENDERER
+   ========================================================================== */
+
+function loadCellBiologyLessons() {
+  const lessons = biologyData.cellBiology.lessons;
+  let htmlContent = "";
+
+  lessons.forEach((lesson) => {
+    htmlContent += `
+      <div class="lesson-card" style="border: 1px solid #e2e8f0; padding: 1.5rem; margin-bottom: 1.5rem; border-radius: 12px; background: #fff; text-align: left;">
+        <span style="background: #e0e7ff; color: #4338ca; padding: 4px 10px; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">${lesson.duration}</span>
+        <h2 style="margin-top: 10px; color: #1e293b;">${lesson.title}</h2>
+        <div style="line-height: 1.6; color: #334155;">${lesson.content}</div>
+        
+        <div class="quick-check" style="background: #f8fafc; padding: 1.2rem; border-left: 4px solid #3b82f6; margin-top: 1.5rem; border-radius: 6px;">
+          <h4 style="margin: 0 0 10px 0; color: #1e3a8a;">💡 Quick Knowledge Check</h4>
+          <p style="margin-bottom: 12px; font-weight: 600;">${lesson.quickCheck.question}</p>
+          ${lesson.quickCheck.options.map((opt, idx) => `
+            <button onclick="checkAnswer(this, ${idx}, ${lesson.quickCheck.correct}, '${lesson.quickCheck.explanation.replace(/'/g, "\\'")}')" style="display: block; margin: 8px 0; padding: 10px 14px; width: 100%; text-align: left; border: 1px solid #cbd5e1; border-radius: 6px; background: white; cursor: pointer; font-size: 0.95rem;">
+              ${opt}
+            </button>
+          `).join('')}
+          <div class="feedback-box" style="margin-top: 10px; font-weight: bold;"></div>
+        </div>
+      </div>
+    `;
+  });
+
+  // Target your lesson display container
+  const container = document.getElementById("lessonContainer") || document.querySelector("#lessons-screen");
+  if (container) {
+    container.innerHTML = htmlContent;
+  }
+}
+
+function checkAnswer(btnElement, selectedIndex, correctIndex, explanation) {
+  const feedbackEl = btnElement.parentElement.querySelector(".feedback-box");
+  if (selectedIndex === correctIndex) {
+    feedbackEl.style.color = "#16a34a";
+    feedbackEl.innerHTML = `✅ Correct! ${explanation}`;
+  } else {
+    feedbackEl.style.color = "#dc2626";
+    feedbackEl.innerHTML = `❌ Try again! ${explanation}`;
+  }
+}
+
+
 </script>
   
 
