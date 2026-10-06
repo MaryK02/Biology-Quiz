@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BioLearn — Professional Biology Platform</title>
+  <title>BioLearn — Interactive Science Platform</title>
   <style>
     * { box-sizing: border-box; }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: #f8fafc; color: #0f172a; }
@@ -16,16 +16,18 @@
     .screen { display: none; }
     .screen.active { display: block; }
     
-    .coursera-card { background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; padding: 1.5rem; margin-bottom: 1.25rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: border-color 0.2s, transform 0.2s; }
+    .coursera-card { background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; padding: 1.25rem; margin-bottom: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: border-color 0.2s; }
     .coursera-card:hover { border-color: #cbd5e1; }
     
-    .btn-primary { background: #064e3b; color: white; border: none; padding: 12px 20px; border-radius: 8px; font-weight: 600; font-size: 0.95rem; cursor: pointer; width: 100%; transition: background 0.2s; }
+    .btn-primary { background: #064e3b; color: white; border: none; padding: 12px 18px; border-radius: 8px; font-weight: 600; font-size: 0.92rem; cursor: pointer; width: 100%; transition: background 0.2s; }
     .btn-primary:hover { background: #043f30; }
     .btn-secondary { background: transparent; color: #475569; border: 1px solid #cbd5e1; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.88rem; cursor: pointer; margin-bottom: 1.25rem; display: inline-flex; align-items: center; gap: 6px; }
     .btn-secondary:hover { background: #f1f5f9; }
     
     .quiz-option-btn { display: block; width: 100%; text-align: left; padding: 12px 14px; border: 1px solid #cbd5e1; border-radius: 8px; background: white; cursor: pointer; font-size: 0.92rem; font-weight: 500; color: #334155; transition: all 0.15s ease; }
     .quiz-option-btn:hover { background: #f8fafc; border-color: #94a3b8; }
+
+    .subject-grid-card { display: flex; align-items: center; gap: 1rem; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -33,7 +35,7 @@
   <header>
     <div class="header-content">
       <div class="logo">🧬 BioLearn</div>
-      <span style="font-size: 0.8rem; background: rgba(255,255,255,0.15); padding: 4px 10px; border-radius: 20px;">University Prep</span>
+      <span style="font-size: 0.8rem; background: rgba(255,255,255,0.15); padding: 4px 10px; border-radius: 20px;">Student Platform</span>
     </div>
   </header>
 
@@ -41,72 +43,100 @@
 
     <!-- 1. DASHBOARD SCREEN -->
     <div id="dashboardScreen" class="screen active">
+      <div style="margin-bottom: 1.25rem;">
+        <h1 style="font-size: 1.5rem; color: #0f172a; margin: 0 0 4px 0;">Interactive Science Curricula 👋</h1>
+        <p style="color: #64748b; margin: 0; font-size: 0.92rem;">Select a branch to explore structured lessons and checks.</p>
+      </div>
+
+      <!-- SUBJECT BRANCHES -->
       <div style="margin-bottom: 1.5rem;">
-        <h1 style="font-size: 1.6rem; color: #0f172a; margin: 0 0 4px 0;">Welcome back 👋</h1>
-        <p style="color: #64748b; margin: 0; font-size: 0.95rem;">Select a learning track below to continue your progress.</p>
+        <h3 style="font-size: 1.1rem; color: #334155; margin-bottom: 0.75rem;">Core Subjects</h3>
+        
+        <div class="coursera-card subject-grid-card" onclick="openSubjectTopics('biology')">
+          <div style="font-size: 2rem; background: #f0fdf4; padding: 10px; border-radius: 10px;">🧬</div>
+          <div>
+            <h4 style="margin: 0; font-size: 1.05rem; color: #0f172a;">Biology</h4>
+            <p style="margin: 2px 0 0 0; color: #64748b; font-size: 0.85rem;">Cells, genetics, organisms & ecology</p>
+          </div>
+        </div>
+
+        <div class="coursera-card subject-grid-card" onclick="openSubjectTopics('physiology')">
+          <div style="font-size: 2rem; background: #fff7ed; padding: 10px; border-radius: 10px;">⚡</div>
+          <div>
+            <h4 style="margin: 0; font-size: 1.05rem; color: #0f172a;">Physiology</h4>
+            <p style="margin: 2px 0 0 0; color: #64748b; font-size: 0.85rem;">Organ systems, cardiac cycle & homeostasis</p>
+          </div>
+        </div>
+
+        <div class="coursera-card subject-grid-card" onclick="openSubjectTopics('anatomy')">
+          <div style="font-size: 2rem; background: #fef2f2; padding: 10px; border-radius: 10px;">🫀</div>
+          <div>
+            <h4 style="margin: 0; font-size: 1.05rem; color: #0f172a;">Anatomy</h4>
+            <p style="margin: 2px 0 0 0; color: #64748b; font-size: 0.85rem;">Tissue architecture & organ structures</p>
+          </div>
+        </div>
+
+        <div class="coursera-card subject-grid-card" onclick="openSubjectTopics('genetics')">
+          <div style="font-size: 2rem; background: #f3e8ff; padding: 10px; border-radius: 10px;">🧬</div>
+          <div>
+            <h4 style="margin: 0; font-size: 1.05rem; color: #0f172a;">Genetics</h4>
+            <p style="margin: 2px 0 0 0; color: #64748b; font-size: 0.85rem;">DNA, gene expression & inheritance</p>
+          </div>
+        </div>
+
+        <div class="coursera-card subject-grid-card" onclick="openSubjectTopics('naturalSciences')">
+          <div style="font-size: 2rem; background: #ecfdf5; padding: 10px; border-radius: 10px;">🌿</div>
+          <div>
+            <h4 style="margin: 0; font-size: 1.05rem; color: #0f172a;">Natural Sciences</h4>
+            <p style="margin: 2px 0 0 0; color: #64748b; font-size: 0.85rem;">Ecosystems, trophic energy & evolution</p>
+          </div>
+        </div>
       </div>
 
-      <div class="coursera-card">
-        <span style="font-size: 0.75rem; font-weight: 700; color: #0284c7; text-transform: uppercase; letter-spacing: 0.5px;">Structured Course</span>
-        <h3 style="margin: 6px 0 8px 0; font-size: 1.2rem; color: #0f172a;">📚 Learn Biology</h3>
-        <p style="color: #475569; font-size: 0.92rem; line-height: 1.5; margin-bottom: 1.25rem;">Master core biology subjects through guided lessons, diagrams, and instant knowledge assessments.</p>
-        <button class="btn-primary" onclick="showScreen('subjectScreen')">Explore Subjects →</button>
-      </div>
+      <!-- PRACTICE & TRACKING TOOLS -->
+      <div>
+        <h3 style="font-size: 1.1rem; color: #334155; margin-bottom: 0.75rem;">Learning Tools</h3>
 
-      <div class="coursera-card">
-        <span style="font-size: 0.75rem; font-weight: 700; color: #059669; text-transform: uppercase; letter-spacing: 0.5px;">Exam Preparation</span>
-        <h3 style="margin: 6px 0 8px 0; font-size: 1.2rem; color: #0f172a;">📝 Past Questions Bank</h3>
-        <p style="color: #475569; font-size: 0.92rem; line-height: 1.5; margin-bottom: 1.25rem;">Practice real past university exam questions with step-by-step explanations.</p>
-        <button class="btn-primary" style="background: #047857;" onclick="loadPastQuestions()">Practice Questions →</button>
-      </div>
+        <div class="coursera-card" style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <h4 style="margin: 0; font-size: 1.05rem; color: #0f172a;">🧠 Quiz Challenge</h4>
+            <p style="margin: 2px 0 0 0; color: #64748b; font-size: 0.85rem;">Randomized multi-branch assessment</p>
+          </div>
+          <button class="btn-primary" style="width: auto; padding: 8px 16px; background: #6d28d9;" onclick="loadQuizScreen()">Start Quiz</button>
+        </div>
 
-      <div class="coursera-card">
-        <span style="font-size: 0.75rem; font-weight: 700; color: #7c3aed; text-transform: uppercase; letter-spacing: 0.5px;">Self-Assessment</span>
-        <h3 style="margin: 6px 0 8px 0; font-size: 1.2rem; color: #0f172a;">🧠 Rapid Quiz Challenge</h3>
-        <p style="color: #475569; font-size: 0.92rem; line-height: 1.5; margin-bottom: 1.25rem;">Test your retention across randomized questions across all biology disciplines.</p>
-        <button class="btn-primary" style="background: #6d28d9;" onclick="loadPastQuestions()">Start Challenge →</button>
+        <div class="coursera-card" style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <h4 style="margin: 0; font-size: 1.05rem; color: #0f172a;">📊 Progress Check</h4>
+            <p style="margin: 2px 0 0 0; color: #64748b; font-size: 0.85rem;">View lesson completion status</p>
+          </div>
+          <button class="btn-primary" style="width: auto; padding: 8px 16px; background: #0284c7;" onclick="loadProgressScreen()">View Progress</button>
+        </div>
       </div>
     </div>
 
-    <!-- 2. SUBJECT SELECTION SCREEN -->
-    <div id="subjectScreen" class="screen">
+    <!-- 2. SUBTOPICS SCREEN -->
+    <div id="topicsScreen" class="screen">
       <button class="btn-secondary" onclick="showScreen('dashboardScreen')">← Back to Dashboard</button>
-      
-      <h2 style="font-size: 1.4rem; color: #0f172a; margin: 0 0 1rem 0;">Biology Subjects</h2>
-
-      <!-- Cell Biology Card -->
-      <div class="coursera-card" style="cursor: pointer;" onclick="loadSubjectLessons('cellBiology')">
-        <div style="display: flex; gap: 1rem; align-items: center;">
-          <div style="font-size: 2.2rem; background: #f0fdf4; padding: 12px; border-radius: 10px;">🔬</div>
-          <div>
-            <h3 style="margin: 0 0 4px 0; font-size: 1.1rem; color: #0f172a;">Cell Biology</h3>
-            <p style="margin: 0; color: #64748b; font-size: 0.88rem;">Structure, organelles, and membrane transport</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Human Physiology Card -->
-      <div class="coursera-card" style="cursor: pointer;" onclick="loadSubjectLessons('humanPhysiology')">
-        <div style="display: flex; gap: 1rem; align-items: center;">
-          <div style="font-size: 2.2rem; background: #eff6ff; padding: 12px; border-radius: 10px;">🫀</div>
-          <div>
-            <h3 style="margin: 0 0 4px 0; font-size: 1.1rem; color: #0f172a;">Human Physiology</h3>
-            <p style="margin: 0; color: #64748b; font-size: 0.88rem;">Circulatory system, organs, and human biology</p>
-          </div>
-        </div>
-      </div>
+      <div id="topicsContainer"></div>
     </div>
 
     <!-- 3. LESSON READER SCREEN -->
     <div id="lessonsScreen" class="screen">
-      <button class="btn-secondary" onclick="showScreen('subjectScreen')">← Back to Subjects</button>
+      <button class="btn-secondary" onclick="showScreen('topicsScreen')">← Back to Topics</button>
       <div id="lessonContainer"></div>
     </div>
 
-    <!-- 4. PAST QUESTIONS SCREEN -->
-    <div id="pastQuestionsScreen" class="screen">
+    <!-- 4. STANDALONE QUIZ SCREEN -->
+    <div id="quizScreen" class="screen">
       <button class="btn-secondary" onclick="showScreen('dashboardScreen')">← Back to Dashboard</button>
-      <div id="pastQuestionsContainer"></div>
+      <div id="quizContainer"></div>
+    </div>
+
+    <!-- 5. PROGRESS CHECK SCREEN -->
+    <div id="progressScreen" class="screen">
+      <button class="btn-secondary" onclick="showScreen('dashboardScreen')">← Back to Dashboard</button>
+      <div id="progressContainer"></div>
     </div>
 
   </div>
