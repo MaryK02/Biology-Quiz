@@ -14,9 +14,9 @@ function showScreen(screenId) {
   }
 }
 
-// 2. Dynamic Cell Biology Loader
-function loadCellBiologyLessons() {
-  const module = biologyData.cellBiology;
+// 2. Dynamic Subject & Lesson Loader
+function loadSubjectLessons(subjectKey) {
+  const module = biologyData[subjectKey];
   const container = document.getElementById("lessonContainer");
 
   if (!container || !module) return;
@@ -40,7 +40,6 @@ function loadCellBiologyLessons() {
         <h2 style="font-size: 1.25rem; color: #1e293b; margin: 0 0 12px 0;">${lesson.title}</h2>
         <div style="line-height: 1.7; color: #334155; font-size: 0.98rem;">${lesson.content}</div>
 
-        <!-- Quick Knowledge Check Widget -->
         <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid #0284c7; padding: 1.25rem; border-radius: 8px; margin-top: 1.5rem;">
           <h4 style="margin: 0 0 8px 0; color: #0369a1; font-size: 1rem; display: flex; align-items: center; gap: 6px;">
             💡 Quick Knowledge Check
@@ -64,13 +63,49 @@ function loadCellBiologyLessons() {
   showScreen("lessonsScreen");
 }
 
-// 3. Quiz Feedback Engine
+// 3. Past Questions Loader
+function loadPastQuestions() {
+  const container = document.getElementById("pastQuestionsContainer");
+  const questions = biologyData.pastQuestions;
+
+  if (!container || !questions) return;
+
+  let htmlContent = `
+    <div style="margin-bottom: 2rem;">
+      <span style="background: #fef3c7; color: #92400e; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Exam Bank</span>
+      <h1 style="font-size: 1.75rem; color: #0f172a; margin: 12px 0 6px 0;">University Past Questions</h1>
+      <p style="color: #64748b; font-size: 0.95rem; margin: 0;">Test your exam readiness with authentic university-level biology questions.</p>
+    </div>
+  `;
+
+  questions.forEach((q, index) => {
+    htmlContent += `
+      <div class="coursera-card" style="margin-bottom: 1.5rem;">
+        <span style="font-size: 0.8rem; background: #e2e8f0; color: #334155; padding: 2px 8px; border-radius: 4px; font-weight: 600;">Question ${index + 1} — ${q.topic}</span>
+        <h3 style="font-size: 1.1rem; color: #1e293b; margin: 12px 0 14px 0;">${q.question}</h3>
+
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          ${q.options.map((optionText, idx) => `
+            <button class="quiz-option-btn" onclick="checkAnswer(this, ${idx}, ${q.correct}, '${q.explanation.replace(/'/g, "\\'")}')">
+              ${optionText}
+            </button>
+          `).join('')}
+        </div>
+        <div class="feedback-box" style="margin-top: 12px; font-weight: 600; font-size: 0.92rem;"></div>
+      </div>
+    `;
+  });
+
+  container.innerHTML = htmlContent;
+  showScreen("pastQuestionsScreen");
+}
+
+// 4. Quiz Feedback Engine
 function checkAnswer(btnElement, selectedIndex, correctIndex, explanation) {
   const parent = btnElement.parentElement;
   const feedbackEl = parent.parentElement.querySelector(".feedback-box");
   const allBtns = parent.querySelectorAll(".quiz-option-btn");
 
-  // Reset button states
   allBtns.forEach(btn => {
     btn.style.borderColor = "#cbd5e1";
     btn.style.background = "#ffffff";
