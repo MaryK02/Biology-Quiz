@@ -8,7 +8,6 @@
     * { box-sizing: border-box; }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: #f8fafc; color: #0f172a; }
     
-    /* Coursera-style Header Navigation */
     header { background: #064e3b; color: white; padding: 1rem 1.25rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 100; }
     .header-content { max-width: 720px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
     .logo { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.5px; }
@@ -17,10 +16,9 @@
     .screen { display: none; }
     .screen.active { display: block; }
     
-    /* Coursera Card Aesthetics */
     .coursera-card { background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; padding: 1.5rem; margin-bottom: 1.25rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: border-color 0.2s, transform 0.2s; }
+    .coursera-card:hover { border-color: #cbd5e1; }
     
-    /* Button System */
     .btn-primary { background: #064e3b; color: white; border: none; padding: 12px 20px; border-radius: 8px; font-weight: 600; font-size: 0.95rem; cursor: pointer; width: 100%; transition: background 0.2s; }
     .btn-primary:hover { background: #043f30; }
     .btn-secondary { background: transparent; color: #475569; border: 1px solid #cbd5e1; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.88rem; cursor: pointer; margin-bottom: 1.25rem; display: inline-flex; align-items: center; gap: 6px; }
@@ -59,14 +57,14 @@
         <span style="font-size: 0.75rem; font-weight: 700; color: #059669; text-transform: uppercase; letter-spacing: 0.5px;">Exam Preparation</span>
         <h3 style="margin: 6px 0 8px 0; font-size: 1.2rem; color: #0f172a;">📝 Past Questions Bank</h3>
         <p style="color: #475569; font-size: 0.92rem; line-height: 1.5; margin-bottom: 1.25rem;">Practice real past university exam questions with step-by-step explanations.</p>
-        <button class="btn-primary" style="background: #047857;">Practice Questions →</button>
+        <button class="btn-primary" style="background: #047857;" onclick="loadPastQuestions()">Practice Questions →</button>
       </div>
 
       <div class="coursera-card">
         <span style="font-size: 0.75rem; font-weight: 700; color: #7c3aed; text-transform: uppercase; letter-spacing: 0.5px;">Self-Assessment</span>
         <h3 style="margin: 6px 0 8px 0; font-size: 1.2rem; color: #0f172a;">🧠 Rapid Quiz Challenge</h3>
         <p style="color: #475569; font-size: 0.92rem; line-height: 1.5; margin-bottom: 1.25rem;">Test your retention across randomized questions across all biology disciplines.</p>
-        <button class="btn-primary" style="background: #6d28d9;">Start Challenge →</button>
+        <button class="btn-primary" style="background: #6d28d9;" onclick="loadPastQuestions()">Start Challenge →</button>
       </div>
     </div>
 
@@ -76,12 +74,24 @@
       
       <h2 style="font-size: 1.4rem; color: #0f172a; margin: 0 0 1rem 0;">Biology Subjects</h2>
 
-      <div class="coursera-card" style="cursor: pointer;" onclick="loadCellBiologyLessons()">
+      <!-- Cell Biology Card -->
+      <div class="coursera-card" style="cursor: pointer;" onclick="loadSubjectLessons('cellBiology')">
         <div style="display: flex; gap: 1rem; align-items: center;">
           <div style="font-size: 2.2rem; background: #f0fdf4; padding: 12px; border-radius: 10px;">🔬</div>
           <div>
             <h3 style="margin: 0 0 4px 0; font-size: 1.1rem; color: #0f172a;">Cell Biology</h3>
             <p style="margin: 0; color: #64748b; font-size: 0.88rem;">Structure, organelles, and membrane transport</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Human Physiology Card -->
+      <div class="coursera-card" style="cursor: pointer;" onclick="loadSubjectLessons('humanPhysiology')">
+        <div style="display: flex; gap: 1rem; align-items: center;">
+          <div style="font-size: 2.2rem; background: #eff6ff; padding: 12px; border-radius: 10px;">🫀</div>
+          <div>
+            <h3 style="margin: 0 0 4px 0; font-size: 1.1rem; color: #0f172a;">Human Physiology</h3>
+            <p style="margin: 0; color: #64748b; font-size: 0.88rem;">Circulatory system, organs, and human biology</p>
           </div>
         </div>
       </div>
@@ -91,6 +101,12 @@
     <div id="lessonsScreen" class="screen">
       <button class="btn-secondary" onclick="showScreen('subjectScreen')">← Back to Subjects</button>
       <div id="lessonContainer"></div>
+    </div>
+
+    <!-- 4. PAST QUESTIONS SCREEN -->
+    <div id="pastQuestionsScreen" class="screen">
+      <button class="btn-secondary" onclick="showScreen('dashboardScreen')">← Back to Dashboard</button>
+      <div id="pastQuestionsContainer"></div>
     </div>
 
   </div>
