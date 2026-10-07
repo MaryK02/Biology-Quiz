@@ -143,10 +143,10 @@ const platformData = {
 
                 <h4 style="color: #064e3b; margin-top: 1rem;">Phases of the Action Potential:</h4>
                 <ul style="padding-left: 1.2rem; line-height: 1.7;">
-                  <li><strong>Resting Membrane Potential:</strong> Typically -70 mV, maintained by the $\text{Na}^+/\text{K}^+$ pump ($3\text{ Na}^+$ out, $2\text{ K}^+$ in) and passive potassium leak channels.</li>
-                  <li><strong>Depolarization:</strong> A stimulus reaches threshold (~ -55 mV), triggering voltage-gated $\text{Na}^+$ channels to open rapidly. $\text{Na}^+$ rushes into the cell, making the interior positive (+30 mV).</li>
-                  <li><strong>Repolarization:</strong> $\text{Na}^+$ channels close and voltage-gated $\text{K}^+$ channels open. $\text{K}^+$ flows out of the cell, restoring the negative charge inside.</li>
-                  <li><strong>Hyperpolarization:</strong> Excess $\text{K}^+$ outflow temporarily makes the membrane more negative than resting potential before returning to -70 mV.</li>
+                  <li><strong>Resting Membrane Potential:</strong> Typically -70 mV, maintained by the Na+/K+ pump (3 Na+ out, 2 K+ in) and passive potassium leak channels.</li>
+                  <li><strong>Depolarization:</strong> A stimulus reaches threshold (~ -55 mV), triggering voltage-gated Na+ channels to open rapidly. Na+ rushes into the cell, making the interior positive (+30 mV).</li>
+                  <li><strong>Repolarization:</strong> Na+ channels close and voltage-gated K+ channels open. K+ flows out of the cell, restoring the negative charge inside.</li>
+                  <li><strong>Hyperpolarization:</strong> Excess K+ outflow temporarily makes the membrane more negative than resting potential before returning to -70 mV.</li>
                 </ul>
               `,
               quickCheck: {
@@ -165,8 +165,8 @@ const platformData = {
                 <h4 style="color: #064e3b; margin-top: 1rem;">Steps of Chemical Synaptic Transmission:</h4>
                 <ol style="padding-left: 1.2rem; line-height: 1.7;">
                   <li>Action potential arrives at the presynaptic axon terminal.</li>
-                  <li>Depolarization opens voltage-gated $\text{Ca}^{2+}$ channels, causing $\text{Ca}^{2+}$ influx.</li>
-                  <li>$\text{Ca}^{2+}$ triggers synaptic vesicles to fuse with the presynaptic membrane and release neurotransmitters into the synaptic cleft.</li>
+                  <li>Depolarization opens voltage-gated Ca2+ channels, causing Ca2+ influx.</li>
+                  <li>Ca2+ triggers synaptic vesicles to fuse with the presynaptic membrane and release neurotransmitters into the synaptic cleft.</li>
                   <li>Neurotransmitters bind to post-synaptic receptors, triggering excitatory or inhibitory potentials.</li>
                 </ol>
 
@@ -282,7 +282,7 @@ const platformData = {
               id: "anat-org-3",
               title: "3. Respiratory Organs (Lungs, Trachea & Diaphragm)",
               content: `
-                <p>The respiratory system facilitates gas exchange ($\text{O}_2$ intake and $\text{CO}_2$ release) between the atmosphere and circulating blood.</p>
+                <p>The respiratory system facilitates gas exchange (O2 intake and CO2 release) between the atmosphere and circulating blood.</p>
                 
                 <h4 style="color: #064e3b; margin-top: 1rem;">1. Lungs & Bronchial Tree</h4>
                 <ul style="padding-left: 1.2rem; line-height: 1.7;">
@@ -330,9 +330,7 @@ const platformData = {
               }
             }
           ]
-        }
-      ]
-    ,
+        },
         {
           id: "limb-anatomy",
           title: "Anatomy of the Upper & Lower Limbs",
@@ -381,7 +379,7 @@ const platformData = {
                 </ul>
 
                 <h4 style="color: #064e3b; margin-top: 1rem;">2. Arterial Supply</h4>
-                <p>Subclavian Artery $\rightarrow$ Axillary Artery $\rightarrow$ Brachial Artery (bifurcates at cubital fossa into Radial and Ulnar Arteries).</p>
+                <p>Subclavian Artery → Axillary Artery → Brachial Artery (bifurcates at cubital fossa into Radial and Ulnar Arteries).</p>
               `,
               quickCheck: {
                 question: "Compression of which nerve passing through the carpal tunnel leads to Carpal Tunnel Syndrome?",
@@ -391,137 +389,4 @@ const platformData = {
               }
             },
             {
-              id: "limb-3",
-              title: "3. Lower Limb: Osteology, Hip & Knee Biomechanics",
-              content: `
-                <p>The lower limb is specialized for weight-bearing, locomotion, and maintaining upright posture.</p>
-
-                <h4 style="color: #064e3b; margin-top: 1rem;">1. Osteology & Joints</h4>
-                <ul style="padding-left: 1.2rem; line-height: 1.7;">
-                  <li><strong>Pelvic Girdle:</strong> Os Coxae (formed by fused Ilium, Ischium, and Pubis). Articulates with the Sacrum.</li>
-                  <li><strong>Thigh:</strong> Femur (longest, strongest bone in the body). Articulates at the <em>Hip Joint</em> (multiaxial ball-and-socket; highly stable).</li>
-                  <li><strong>Leg (Crus):</strong> Tibia (medial, weight-bearing) and Fibula (lateral, non-weight-bearing, muscle attachment site).</li>
-                  <li><strong>Knee Joint:</strong> Modified hinge joint stabilized by anterior/posterior cruciate ligaments (ACL/PCL) and medial/lateral collateral ligaments (MCL/LCL).</li>
-                  <li><strong>Foot:</strong> 7 Tarsals (including Talus and Calcaneus), 5 Metatarsals, and 14 Phalanges.</li>
-                </ul>
-              `,
-              quickCheck: {
-                question: "Which leg bone is the primary weight-bearing bone that articulates directly with the femur at the knee joint?",
-                options: ["Fibula", "Tibia", "Radius", "Calcaneus"],
-                correct: 1,
-                explanation: "The Tibia is the larger, medial bone of the leg that bears body weight from the femur."
-              }
-            },
-            {
-              id: "limb-4",
-              title: "4. Lower Limb: Muscular Compartments & Lumbosacral Nerves",
-              content: `
-                <p>The lower limb muscles are divided into deep fascia-enclosed compartments driven by the <strong>Lumbosacral Plexus (L1–S4)</strong>.</p>
-
-                <h4 style="color: #064e3b; margin-top: 1rem;">1. Compartments & Nerve Innervation</h4>
-                <ul style="padding-left: 1.2rem; line-height: 1.7;">
-                  <li><strong>Anterior Thigh:</strong> Quadriceps femoris (knee extension; innervated by the <em>Femoral Nerve</em>).</li>
-                  <li><strong>Medial Thigh:</strong> Adductors (hip adduction; innervated by the <em>Obturator Nerve</em>).</li>
-                  <li><strong>Posterior Thigh:</strong> Hamstrings (hip extension / knee flexion; innervated by the <em>Sciatic Nerve</em>).</li>
-                  <li><strong>Anterior Leg:</strong> Tibialis anterior (dorsiflexion; innervated by the <em>Deep Fibular Nerve</em>). Injury causes <em>foot drop</em>.</li>
-                  <li><strong>Posterior Leg:</strong> Gastrocnemius and Soleus (plantar flexion; innervated by the <em>Tibial Nerve</em>).</li>
-                </ul>
-
-                <h4 style="color: #064e3b; margin-top: 1rem;">2. Sciatic Nerve</h4>
-                <p>The largest single nerve in the body, exiting the pelvis via the greater sciatic foramen before splitting into the Tibial and Common Fibular nerves in the popliteal fossa.</p>
-              `,
-              quickCheck: {
-                question: "Which muscle group in the posterior thigh acts to flex the knee and extend the hip?",
-                options: ["Quadriceps", "Adductors", "Hamstrings", "Peroneals"],
-                correct: 2,
-                explanation: "The Hamstrings (Biceps femoris, Semitendinosus, Semimembranosus) cross two joints to flex the knee and extend the hip."
-              }
-            }
-          ]
-        }
-   },
-
-    genetics: {
-      title: "Genetics",
-      icon: "🧬",
-      description: "Heredity, DNA structure, gene expression, and molecular genetics.",
-      topics: [
-        {
-          id: "mendelian-genetics",
-          title: "Molecular Genetics & Inheritance Patterns",
-          description: "Mendel's Laws, DNA replication, transcription, and translation.",
-          lessons: [
-            {
-              id: "gen-1",
-              title: "1. DNA Structure & Central Dogma",
-              content: `
-                <p>The Central Dogma of Molecular Biology describes the flow of genetic information: DNA → RNA → Protein.</p>
-                <ul style="padding-left: 1.2rem; line-height: 1.7;">
-                  <li><strong>Replication:</strong> Copying DNA prior to cell division.</li>
-                  <li><strong>Transcription:</strong> Synthesizing messenger RNA (mRNA) from a DNA template.</li>
-                  <li><strong>Translation:</strong> Ribosomes reading mRNA codons to assemble amino acid protein chains.</li>
-                </ul>
-              `,
-              quickCheck: {
-                question: "What process converts mRNA sequences into functional amino acid protein chains?",
-                options: ["Transcription", "Translation", "Replication", "Reverse Transcription"],
-                correct: 1,
-                explanation: "Translation occurs at the ribosome where mRNA codons are translated into specific protein chains."
-              }
-            }
-          ]
-        }
-      ]
-    },
-
-    naturalSciences: {
-      title: "Natural Sciences",
-      icon: "🌿",
-      description: "Ecology, environmental dynamics, biodiversity, and evolutionary biology.",
-      topics: [
-        {
-          id: "ecosystem-dynamics",
-          title: "Ecology & Ecosystem Dynamics",
-          description: "Energy flow, trophic levels, biogeochemical cycles, and environmental balance.",
-          lessons: [
-            {
-              id: "nat-1",
-              title: "1. Trophic Levels & Energy Flow",
-              content: `
-                <p>Energy flows directionally through ecosystems starting from primary producers up through consumers.</p>
-                <p>The <strong>10% Rule</strong> states that roughly only 10% of energy stored at any trophic level is converted into biomass at the next level.</p>
-              `,
-              quickCheck: {
-                question: "According to ecological principles, approximately how much energy is transferred from one trophic level to the next?",
-                options: ["50%", "25%", "10%", "90%"],
-                correct: 2,
-                explanation: "According to Lindeman's 10% Law, about 10% of energy is transferred to the next trophic level, while 90% is lost as metabolic heat."
-              }
-            }
-          ]
-        }
-      ]
-    }
-  },
-
-  quizBank: [
-    {
-      question: "Which organelle contains hydrolytic enzymes responsible for breaking down cellular waste?",
-      options: ["Peroxisome", "Lysosome", "Ribosome", "Golgi Apparatus"],
-      correct: 1,
-      explanation: "Lysosomes contain acidic hydrolytic enzymes that break down waste materials and cellular debris."
-    },
-    {
-      question: "What is the primary function of hemoglobin in human blood?",
-      options: ["Blood Clotting", "Oxygen Transport", "Immune Defense", "Hormone Production"],
-      correct: 1,
-      explanation: "Hemoglobin is an iron-rich protein in red blood cells that binds oxygen in the lungs and transports it throughout the body."
-    },
-    {
-      question: "In DNA, which nitrogenous base pairs specifically with Guanine?",
-      options: ["Adenine", "Thymine", "Cytosine", "Uracil"],
-      correct: 2,
-      explanation: "According to Chargaff's rules, Guanine always forms three hydrogen bonds with Cytosine in DNA."
-    }
-  ]
-};
+              id:
