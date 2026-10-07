@@ -1,5 +1,4 @@
 const platformData = {
-  // 1. MAIN SUBJECT BRANCHES & SUBTOPICS
   subjects: {
     biology: {
       title: "General Biology",
@@ -8,13 +7,12 @@ const platformData = {
       topics: [
         {
           id: "cell-bio-complete",
-          title: "Comprehensive Cell Biology",
+          title: "Cell Biology",
           description: "Cell theory, organelle micro-anatomy, membrane transport, and cellular respiration.",
           lessons: [
             {
               id: "cb-1",
               title: "1. Cell Theory & Universal Architecture",
-              duration: "10 mins read",
               content: `
                 <p>The cell is the structural, functional, and fundamental unit of all living organisms. Cell theory states that all living things are composed of cells, the cell is the basic unit of life, and all cells arise from pre-existing cells.</p>
                 <h4 style="color: #0f172a; margin-top: 1rem;">Prokaryotic vs. Eukaryotic Cells:</h4>
@@ -33,7 +31,6 @@ const platformData = {
             {
               id: "cb-2",
               title: "2. Organelle Anatomy & Biochemical Roles",
-              duration: "12 mins read",
               content: `
                 <p>Organelles carry out specialized physiological tasks within the eukaryotic cell:</p>
                 <ul style="padding-left: 1.2rem; line-height: 1.8;">
@@ -54,7 +51,6 @@ const platformData = {
             {
               id: "cb-3",
               title: "3. Membrane Structure & Transport Dynamics",
-              duration: "10 mins read",
               content: `
                 <p>The plasma membrane is a selectively permeable phospholipid bilayer featuring embedded proteins, cholesterol, and carbohydrates (Fluid Mosaic Model).</p>
                 <h4 style="color: #0f172a; margin-top: 1rem;">Transport Mechanisms:</h4>
@@ -88,7 +84,6 @@ const platformData = {
             {
               id: "phys-1",
               title: "1. The Cardiac Cycle & Systemic Circulation",
-              duration: "12 mins read",
               content: `
                 <p>The mammalian circulatory system uses a four-chambered heart to drive dual circulation (Pulmonary and Systemic loops).</p>
                 <ul style="padding-left: 1.2rem; line-height: 1.7;">
@@ -121,7 +116,6 @@ const platformData = {
             {
               id: "anat-1",
               title: "1. Classification of Primary Tissues",
-              duration: "10 mins read",
               content: `
                 <p>The human body consists of four primary tissue types:</p>
                 <ul style="padding-left: 1.2rem; line-height: 1.7;">
@@ -156,9 +150,8 @@ const platformData = {
             {
               id: "gen-1",
               title: "1. DNA Structure & Central Dogma",
-              duration: "11 mins read",
               content: `
-                <p>The Central Dogma of Molecular Biology describes the flow of genetic information: <strong>DNA $\rightarrow$ RNA $\rightarrow$ Protein</strong>.</p>
+                <p>The Central Dogma of Molecular Biology describes the flow of genetic information: DNA → RNA → Protein.</p>
                 <ul style="padding-left: 1.2rem; line-height: 1.7;">
                   <li><strong>Replication:</strong> Copying DNA prior to cell division.</li>
                   <li><strong>Transcription:</strong> Synthesizing messenger RNA (mRNA) from a DNA template.</li>
@@ -190,7 +183,6 @@ const platformData = {
             {
               id: "nat-1",
               title: "1. Trophic Levels & Energy Flow",
-              duration: "9 mins read",
               content: `
                 <p>Energy flows directionally through ecosystems starting from primary producers (autotrophs) up through primary, secondary, and tertiary consumers.</p>
                 <p>The <strong>10% Rule</strong> states that roughly only 10% of energy stored at any trophic level is converted into biomass at the next level.</p>
@@ -208,7 +200,6 @@ const platformData = {
     }
   },
 
-  // 2. QUIZ CHALLENGE DATABASE
   quizBank: [
     {
       question: "Which organelle contains hydrolytic enzymes responsible for breaking down cellular waste?",
