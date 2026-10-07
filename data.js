@@ -99,6 +99,112 @@ const platformData = {
               }
             }
           ]
+        },
+        {
+          id: "neuro-phys",
+          title: "Neurophysiology & Signal Conduction",
+          description: "Neural signaling, action potential propagation, synaptic transmission, and nervous system organization.",
+          lessons: [
+            {
+              id: "neuro-1",
+              title: "1. Cellular Neurobiology (Neurons & Glia)",
+              content: `
+                <p>The nervous system processes and transmits information using specialized electrical and chemical signals.</p>
+
+                <h4 style="color: #064e3b; margin-top: 1rem;">1. Neuron Structure</h4>
+                <ul style="padding-left: 1.2rem; line-height: 1.7;">
+                  <li><strong>Dendrites:</strong> Branching projections that receive signals from other neurons or receptors.</li>
+                  <li><strong>Soma (Cell Body):</strong> Contains the nucleus and cellular machinery to maintain cell functions.</li>
+                  <li><strong>Axon:</strong> Long nerve fiber that conducts action potentials away from the soma toward target cells.</li>
+                  <li><strong>Myelin Sheath:</strong> Lipid-rich insulating layer produced by glia that speeds up signal transmission via saltatory conduction.</li>
+                </ul>
+
+                <h4 style="color: #064e3b; margin-top: 1rem;">2. Glial Cells (Neuroglia)</h4>
+                <p>Supporting non-neuronal cells that maintain homeostasis and structure:</p>
+                <ul style="padding-left: 1.2rem; line-height: 1.7;">
+                  <li><strong>Astrocytes:</strong> Form the blood-brain barrier (BBB) and regulate extracellular ion levels.</li>
+                  <li><strong>Oligodendrocytes:</strong> Produce myelin in the Central Nervous System (CNS).</li>
+                  <li><strong>Schwann Cells:</strong> Produce myelin in the Peripheral Nervous System (PNS).</li>
+                  <li><strong>Microglia:</strong> Resident immune cells acting as phagocytes within the CNS.</li>
+                </ul>
+              `,
+              quickCheck: {
+                question: "Which glial cells are responsible for forming the myelin sheath in the Central Nervous System (CNS)?",
+                options: ["Schwann Cells", "Astrocytes", "Oligodendrocytes", "Microglia"],
+                correct: 2,
+                explanation: "Oligodendrocytes form myelin in the CNS, whereas Schwann cells form myelin in the PNS."
+              }
+            },
+            {
+              id: "neuro-2",
+              title: "2. Action Potentials & Membrane Bioelectricity",
+              content: `
+                <p>Neurons communicate via rapid, electrical impulses called <strong>action potentials</strong> driven by voltage-gated ion channels.</p>
+
+                <h4 style="color: #064e3b; margin-top: 1rem;">Phases of the Action Potential:</h4>
+                <ul style="padding-left: 1.2rem; line-height: 1.7;">
+                  <li><strong>Resting Membrane Potential:</strong> Typically -70 mV, maintained by the $\text{Na}^+/\text{K}^+$ pump ($3\text{ Na}^+$ out, $2\text{ K}^+$ in) and passive potassium leak channels.</li>
+                  <li><strong>Depolarization:</strong> A stimulus reaches threshold (~ -55 mV), triggering voltage-gated $\text{Na}^+$ channels to open rapidly. $\text{Na}^+$ rushes into the cell, making the interior positive (+30 mV).</li>
+                  <li><strong>Repolarization:</strong> $\text{Na}^+$ channels close and voltage-gated $\text{K}^+$ channels open. $\text{K}^+$ flows out of the cell, restoring the negative charge inside.</li>
+                  <li><strong>Hyperpolarization:</strong> Excess $\text{K}^+$ outflow temporarily makes the membrane more negative than resting potential before returning to -70 mV.</li>
+                </ul>
+              `,
+              quickCheck: {
+                question: "What ion influx is directly responsible for the rapid depolarization phase of an action potential?",
+                options: ["Outflow of Potassium (K+)", "Influx of Sodium (Na+)", "Influx of Calcium (Ca2+)", "Outflow of Chloride (Cl-)"],
+                correct: 1,
+                explanation: "The influx of positively charged Sodium (Na+) ions through opened voltage-gated Na+ channels rapidly depolarizes the membrane."
+              }
+            },
+            {
+              id: "neuro-3",
+              title: "3. Synaptic Transmission & Neurotransmitters",
+              content: `
+                <p>Signal transfer across a neural junction occurs at the <strong>synapse</strong>.</p>
+
+                <h4 style="color: #064e3b; margin-top: 1rem;">Steps of Chemical Synaptic Transmission:</h4>
+                <ol style="padding-left: 1.2rem; line-height: 1.7;">
+                  <li>Action potential arrives at the presynaptic axon terminal.</li>
+                  <li>Depolarization opens voltage-gated $\text{Ca}^{2+}$ channels, causing $\text{Ca}^{2+}$ influx.</li>
+                  <li>$\text{Ca}^{2+}$ triggers synaptic vesicles to fuse with the presynaptic membrane and release neurotransmitters into the synaptic cleft.</li>
+                  <li>Neurotransmitters bind to post-synaptic receptors, triggering excitatory or inhibitory potentials.</li>
+                </ol>
+
+                <h4 style="color: #064e3b; margin-top: 1rem;">Key Neurotransmitters:</h4>
+                <ul style="padding-left: 1.2rem; line-height: 1.7;">
+                  <li><strong>Acetylcholine (ACh):</strong> Primary neurotransmitter at neuromuscular junctions.</li>
+                  <li><strong>GABA:</strong> Main inhibitory neurotransmitter in the CNS.</li>
+                  <li><strong>Glutamate:</strong> Main excitatory neurotransmitter in the CNS.</li>
+                  <li><strong>Dopamine:</strong> Regulates motor control, reward, and motivation pathways.</li>
+                </ul>
+              `,
+              quickCheck: {
+                question: "Which neurotransmitter serves as the principal inhibitory signal in the central nervous system?",
+                options: ["Glutamate", "GABA", "Acetylcholine", "Dopamine"],
+                correct: 1,
+                explanation: "GABA (Gamma-Aminobutyric Acid) is the primary inhibitory neurotransmitter, reducing neural excitability across the CNS."
+              }
+            },
+            {
+              id: "neuro-4",
+              title: "4. Autonomic Nervous System Dynamics",
+              content: `
+                <p>The Autonomic Nervous System (ANS) regulates involuntary visceral functions without conscious thought.</p>
+
+                <h4 style="color: #064e3b; margin-top: 1rem;">Divisions of the ANS:</h4>
+                <ul style="padding-left: 1.2rem; line-height: 1.7;">
+                  <li><strong>Sympathetic Nervous System ("Fight or Flight"):</strong> Increases heart rate, dilates airways, inhibits digestion, and mobilizes glucose reserves during stress.</li>
+                  <li><strong>Parasympathetic Nervous System ("Rest and Digest"):</strong> Slows heart rate, stimulates digestive activity, and promotes energy conservation.</li>
+                </ul>
+              `,
+              quickCheck: {
+                question: "Which branch of the autonomic nervous system is responsible for the 'Fight or Flight' response?",
+                options: ["Parasympathetic", "Sympathetic", "Somatic", "Central"],
+                correct: 1,
+                explanation: "The sympathetic nervous system activates energy reserves and increases cardiac output during stressful 'fight or flight' scenarios."
+              }
+            }
+          ]
         }
       ]
     },
@@ -117,7 +223,7 @@ const platformData = {
               id: "anat-org-1",
               title: "1. Cardiovascular Organs (Heart & Blood Vessels)",
               content: `
-                <p>The cardiovascular system distributes oxygen, nutrients, and hormones to peripheral tissues while removing metabolic metabolic wastes.</p>
+                <p>The cardiovascular system distributes oxygen, nutrients, and hormones to peripheral tissues while removing metabolic wastes.</p>
                 
                 <h4 style="color: #064e3b; margin-top: 1.2rem;">Major Organ: The Heart</h4>
                 <ul style="padding-left: 1.2rem; line-height: 1.7;">
@@ -148,7 +254,7 @@ const platformData = {
                 <ul style="padding-left: 1.2rem; line-height: 1.7;">
                   <li><strong>Location:</strong> Upper left quadrant of the abdominal cavity, inferior to the diaphragm.</li>
                   <li><strong>Physiological State:</strong> Secretes hydrochloric acid (pH 1.5–2.0) and pepsinogen to mechanically and chemically digest food into chyme.</li>
-                  <li><strong>Pathology:</strong> <em>Peptic Ulcer Disease (PUD)</em> — Mucosal erosion caused by <i>H. pylori</i> infection or prolonged NSAID use.</li>
+                  <li><strong>Pathology:</strong> <em>Peptic Ulcer Disease (PUD)</em> — Mucosal erosion caused by H. pylori infection or prolonged NSAID use.</li>
                 </ul>
 
                 <h4 style="color: #064e3b; margin-top: 1rem;">2. Liver</h4>
