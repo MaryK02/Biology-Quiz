@@ -333,6 +333,113 @@ const platformData = {
         }
       ]
     },
+        {
+          id: "limb-anatomy",
+          title: "Anatomy of the Upper & Lower Limbs",
+          description: "Osteology, myology, neurovascular supply, and major joint biomechanics of the limbs.",
+          lessons: [
+            {
+              id: "limb-1",
+              title: "1. Upper Limb: Bones, Joints & Compartments",
+              content: `
+                <p>The upper limb is specialized for mobility, reaching, and precise manual dexterity.</p>
+                
+                <h4 style="color: #064e3b; margin-top: 1rem;">1. Osteology & Joints</h4>
+                <ul style="padding-left: 1.2rem; line-height: 1.7;">
+                  <li><strong>Pectoral Girdle:</strong> Clavicle and Scapula (connects the axial skeleton to the appendicular upper limb).</li>
+                  <li><strong>Arm (Brachium):</strong> Humerus. Articulates at the <em>Glenohumeral Joint</em> (ball-and-socket; highly mobile, susceptible to dislocation).</li>
+                  <li><strong>Forearm (Antebrachium):</strong> Radius (lateral) and Ulna (medial). Form the <em>Hinge Elbow Joint</em> and proximal/distal radioulnar joints for pronation/supination.</li>
+                  <li><strong>Hand & Wrist:</strong> 8 Carpal bones, 5 Metacarpals, and 14 Phalanges.</li>
+                </ul>
+
+                <h4 style="color: #064e3b; margin-top: 1rem;">2. Functional Muscle Groups</h4>
+                <ul style="padding-left: 1.2rem; line-height: 1.7;">
+                  <li><strong>Anterior Arm:</strong> Biceps brachii, Brachialis (Flexors of the elbow; innervated by the <em>Musculocutaneous Nerve</em>).</li>
+                  <li><strong>Posterior Arm:</strong> Triceps brachii (Extensor of the elbow; innervated by the <em>Radial Nerve</em>).</li>
+                </ul>
+              `,
+              quickCheck: {
+                question: "Which nerve innervates the triceps brachii muscle responsible for elbow extension?",
+                options: ["Median Nerve", "Radial Nerve", "Ulnar Nerve", "Musculocutaneous Nerve"],
+                correct: 1,
+                explanation: "The Radial Nerve supplies the posterior compartment of the arm and forearm, including the triceps brachii."
+              }
+            },
+            {
+              id: "limb-2",
+              title: "2. Upper Limb: Brachial Plexus & Neurovascular Pathways",
+              content: `
+                <p>Nerve supply to the upper limb originates from the <strong>Brachial Plexus</strong> (ventral rami of C5–T1 spinal nerves).</p>
+
+                <h4 style="color: #064e3b; margin-top: 1rem;">1. Major Terminal Nerve Branches</h4>
+                <ul style="padding-left: 1.2rem; line-height: 1.7;">
+                  <li><strong>Musculocutaneous:</strong> Flexors of the anterior arm.</li>
+                  <li><strong>Axillary:</strong> Deltoid and Teres Minor muscles (shoulder abduction).</li>
+                  <li><strong>Radial:</strong> All posterior compartment extensors (arm and forearm). Injury causes <em>wrist drop</em>.</li>
+                  <li><strong>Median:</strong> Anterior forearm flexors, thenar muscles. Compression in the carpal tunnel causes <em>Carpal Tunnel Syndrome</em>.</li>
+                  <li><strong>Ulnar:</strong> Intrinsic hand muscles and medial forearm flexors. Injury causes <em>claw hand</em>.</li>
+                </ul>
+
+                <h4 style="color: #064e3b; margin-top: 1rem;">2. Arterial Supply</h4>
+                <p>Subclavian Artery $\rightarrow$ Axillary Artery $\rightarrow$ Brachial Artery (bifurcates at cubital fossa into Radial and Ulnar Arteries).</p>
+              `,
+              quickCheck: {
+                question: "Compression of which nerve passing through the carpal tunnel leads to Carpal Tunnel Syndrome?",
+                options: ["Ulnar Nerve", "Radial Nerve", "Median Nerve", "Axillary Nerve"],
+                correct: 2,
+                explanation: "The Median Nerve passes under the flexor retinaculum in the carpal tunnel; compression causes numbness and muscle weakness in the lateral hand."
+              }
+            },
+            {
+              id: "limb-3",
+              title: "3. Lower Limb: Osteology, Hip & Knee Biomechanics",
+              content: `
+                <p>The lower limb is specialized for weight-bearing, locomotion, and maintaining upright posture.</p>
+
+                <h4 style="color: #064e3b; margin-top: 1rem;">1. Osteology & Joints</h4>
+                <ul style="padding-left: 1.2rem; line-height: 1.7;">
+                  <li><strong>Pelvic Girdle:</strong> Os Coxae (formed by fused Ilium, Ischium, and Pubis). Articulates with the Sacrum.</li>
+                  <li><strong>Thigh:</strong> Femur (longest, strongest bone in the body). Articulates at the <em>Hip Joint</em> (multiaxial ball-and-socket; highly stable).</li>
+                  <li><strong>Leg (Crus):</strong> Tibia (medial, weight-bearing) and Fibula (lateral, non-weight-bearing, muscle attachment site).</li>
+                  <li><strong>Knee Joint:</strong> Modified hinge joint stabilized by anterior/posterior cruciate ligaments (ACL/PCL) and medial/lateral collateral ligaments (MCL/LCL).</li>
+                  <li><strong>Foot:</strong> 7 Tarsals (including Talus and Calcaneus), 5 Metatarsals, and 14 Phalanges.</li>
+                </ul>
+              `,
+              quickCheck: {
+                question: "Which leg bone is the primary weight-bearing bone that articulates directly with the femur at the knee joint?",
+                options: ["Fibula", "Tibia", "Radius", "Calcaneus"],
+                correct: 1,
+                explanation: "The Tibia is the larger, medial bone of the leg that bears body weight from the femur."
+              }
+            },
+            {
+              id: "limb-4",
+              title: "4. Lower Limb: Muscular Compartments & Lumbosacral Nerves",
+              content: `
+                <p>The lower limb muscles are divided into deep fascia-enclosed compartments driven by the <strong>Lumbosacral Plexus (L1–S4)</strong>.</p>
+
+                <h4 style="color: #064e3b; margin-top: 1rem;">1. Compartments & Nerve Innervation</h4>
+                <ul style="padding-left: 1.2rem; line-height: 1.7;">
+                  <li><strong>Anterior Thigh:</strong> Quadriceps femoris (knee extension; innervated by the <em>Femoral Nerve</em>).</li>
+                  <li><strong>Medial Thigh:</strong> Adductors (hip adduction; innervated by the <em>Obturator Nerve</em>).</li>
+                  <li><strong>Posterior Thigh:</strong> Hamstrings (hip extension / knee flexion; innervated by the <em>Sciatic Nerve</em>).</li>
+                  <li><strong>Anterior Leg:</strong> Tibialis anterior (dorsiflexion; innervated by the <em>Deep Fibular Nerve</em>). Injury causes <em>foot drop</em>.</li>
+                  <li><strong>Posterior Leg:</strong> Gastrocnemius and Soleus (plantar flexion; innervated by the <em>Tibial Nerve</em>).</li>
+                </ul>
+
+                <h4 style="color: #064e3b; margin-top: 1rem;">2. Sciatic Nerve</h4>
+                <p>The largest single nerve in the body, exiting the pelvis via the greater sciatic foramen before splitting into the Tibial and Common Fibular nerves in the popliteal fossa.</p>
+              `,
+              quickCheck: {
+                question: "Which muscle group in the posterior thigh acts to flex the knee and extend the hip?",
+                options: ["Quadriceps", "Adductors", "Hamstrings", "Peroneals"],
+                correct: 2,
+                explanation: "The Hamstrings (Biceps femoris, Semitendinosus, Semimembranosus) cross two joints to flex the knee and extend the hip."
+              }
+            }
+          ]
+        }
+   },
 
     genetics: {
       title: "Genetics",
