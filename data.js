@@ -332,7 +332,7 @@ const platformData = {
           ]
         }
       ]
-    },
+    ,
         {
           id: "limb-anatomy",
           title: "Anatomy of the Upper & Lower Limbs",
